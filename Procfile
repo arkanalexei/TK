@@ -1,0 +1,1 @@
+web: gunicorn tk_pbp_d06.wsgi --log-file -
