@@ -11,7 +11,7 @@
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) 
 
 ## 👤 Anggota Kelompok 👤
-- Laela Putri Salsa Biella - NPM
+- [Laela Putri Salsa Biella - 2106751562](https://github.com/salsabiellalp)
 - Inez Bungaria Octaviana Pardede - NPM
 - [Givarrel Veivel Pattiwael - 2106640341](https://github.com/Veivel)
 - [Abraham Javier Sebastian Situmorang - 2106704364](https://github.com/ajsebastians)
@@ -41,7 +41,7 @@ TODO
 TODO
 
 ### Point Leaderboard
-TODO
+Halaman papan peringkat. Menampilkan user dengan point tertinggi. Tampilan user diurutkan berdasarkan point yang diperoleh user selama menggunakan website.
 
 ### Tukar Poin
 TODO
