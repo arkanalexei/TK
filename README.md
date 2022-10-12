@@ -4,7 +4,7 @@
 <ul>
   <li>Laela Putri Salsa Biella - NPM</li>
   <li>Inez Bungaria Octaviana Pardede - NPM</li>
-  <li>Givarrel Veivel Pattiwael - NPM</li>
+  <li>Givarrel Veivel Pattiwael - 2106640341</li>
   <li>Abraham Javier Sebastian Situmorang - NPM</li>
   <li>Arkan Alexei Andrei - 2106631463</li>
   <li>Muhammad Rafi' Nur Rozaan - NPM</li>
