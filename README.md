@@ -10,12 +10,11 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) 
 
-
 ## 👤 Anggota Kelompok 👤
 - Laela Putri Salsa Biella - NPM
 - Inez Bungaria Octaviana Pardede - NPM
 - [Givarrel Veivel Pattiwael - NPM](https://github.com/Veivel)
-- Abraham Javier Sebastian Situmorang - NPM
+- Abraham Javier Sebastian Situmorang - 2106704364
 - [Arkan Alexei Andrei - 2106631463](https://github.com/arkanalexei)
 - Muhammad Rafi' Nur Rozaan - NPM
 
@@ -31,8 +30,7 @@ Halaman untuk membuat akun atau login. Tipe user yang login akan mempengaruhi ak
 ### Home
 Tampilan utama website. Menampilkan informasi umum mengenai websitenya. Hal-hal seperti statistik seputar sampah dunia, teknis deposit sampah, dan lain-lain.
 ### About Us
-TODO
-
+Halaman untuk mengetahui informasi lebih jauh mengenai organisasi dan apa yang kami lakukan. Halaman ini akan menampilkan latar belakang munculnya organisasi, visi dan misi, daftar anggota organisasi, dan lokasi organisasi (dengan interactive map). Selain itu, halaman ini akan menampilkan daftar kontak yang dapat dihubungi dan form yang dapat diisi jika mempunyai pertanyaan lebih lanjut.
 ### Contact
 TODO
 
