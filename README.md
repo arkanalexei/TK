@@ -1,5 +1,5 @@
 # ♻️ tk-pbp ♻️
-![a](https://d1csarkz8obe9u.cloudfront.net/posterpreviews/reduce%2C-reuse%2C-recycle-bag-campaign-banner-design-template-9d59d2ebe4dc6bda40534615f9fdcdaf_screen.jpg?ts=1655879032)
+![a](banner.png)
 ![Deployment Status](https://github.com/arkanalexei/tk-pbp/actions/workflows/dpl.yml/badge.svg)
 >Proyek ini dibuat untuk memenuhi tugas Proyek Tengah Semester (PTS) pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia pada Semester Gasal, Tahun Ajaran 2022/2023.
 
