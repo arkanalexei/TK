@@ -1,5 +1,5 @@
 # ♻️ tk-pbp ♻️
-![a](banner.png)
+![Banner](banner.png)
 ![Deployment Status](https://github.com/arkanalexei/tk-pbp/actions/workflows/dpl.yml/badge.svg)
 >Proyek ini dibuat untuk memenuhi tugas Proyek Tengah Semester (PTS) pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia pada Semester Gasal, Tahun Ajaran 2022/2023.
 
@@ -13,8 +13,8 @@
 ## 👤 Anggota Kelompok 👤
 - Laela Putri Salsa Biella - NPM
 - Inez Bungaria Octaviana Pardede - NPM
-- [Givarrel Veivel Pattiwael - NPM](https://github.com/Veivel)
-- Abraham Javier Sebastian Situmorang - 2106704364
+- [Givarrel Veivel Pattiwael - 2106640341](https://github.com/Veivel)
+- [Abraham Javier Sebastian Situmorang - 2106704364](https://github.com/ajsebastians)
 - [Arkan Alexei Andrei - 2106631463](https://github.com/arkanalexei)
 - Muhammad Rafi' Nur Rozaan - NPM
 
