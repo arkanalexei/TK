@@ -44,7 +44,7 @@ Halaman dimana user yang sudah login dapat mendeposit sampah ke sistem bank samp
 Halaman papan peringkat. Menampilkan user dengan point tertinggi. Tampilan user diurutkan berdasarkan point yang diperoleh user selama menggunakan website.
 
 ### Tukar Poin
-TODO
+Halaman untuk user menukar poin hasil deposit sampah menjadi voucher/perks. Hanya dapat diakses oleh user yang sudah memiliki akun dan login.
 
 ### Green Footprint Calculator
 TODO
