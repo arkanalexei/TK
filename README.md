@@ -22,9 +22,11 @@
 https://tugas-kelompok-pbp.herokuapp.com/
 
 ## 📝 Ringkasan 📝
-Scrap.py adalah sebuah organisasi non profit yang bertujuan untuk mengurangi jumlah sampah di dunia. Kami bekerja dengan sukarelawan untuk mengolah sampah-sampah anda untuk masa depan yang lebih cerah.
+Indonesia merupakan negara produsen sampah terbesar di seluruh Asia. Faktanya, kita menghasilkan 67,8 juta ton sampah pada tahun 2021. Produksi sampah Indonesia pada tahun 2022 diperkirakan mencapai 68,8 juta ton.
 
-*Cleaning the environment, one scrap at a time*
+Scrap.py adalah sebuah organisasi non profit yang bertujuan untuk mengurangi jumlah sampah dengan mendaur ulang dan mengelola sampah dengan baik. Kami bekerja dengan sukarelawan untuk mengolah sampah-sampah anda untuk masa depan yang lebih cerah.
+
+*Cleaning the environment, one scrap at a time.*
 
 ## 📃 Modules 📃
 ### Register/Login
@@ -38,7 +40,7 @@ Halaman untuk mengetahui informasi lebih jauh mengenai organisasi dan apa yang k
 Halaman dimana admin bisa menulis dan menerbitkan artikel baru. Tipe user selain admin hanya bisa melihat artikel-artikel tersebut.
 
 ### Deposit Sampah
-Halaman dimana user yang sudah login dapat mendeposit sampah ke sistem bank sampah. Tergantung jumlah sampah dan tipenya, user akan mendapatkan koin / kredit yang nanti dapat ditukar.
+Halaman dimana user yang sudah login dapat mensubmit form untuk deposit sampah ke sistem bank sampah. User bisa menentukan jumlah sampah deposit dan tipe sampahnya (yang sudah pre-determined). Tergantung deposit yang dilakukan, user akan mendapatkan poin di *balance*nya yang nanti dapat ditukar.
 
 ### Point Leaderboard
 Halaman papan peringkat. Menampilkan user dengan point tertinggi. Tampilan user diurutkan berdasarkan point yang diperoleh user selama menggunakan website.
