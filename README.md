@@ -12,7 +12,7 @@
 
 ## 👤 Anggota Kelompok 👤
 - [Laela Putri Salsa Biella - 2106751562](https://github.com/salsabiellalp)
-- Inez Bungaria Octaviana Pardede - NPM
+- [Inez Bungaria Octaviana Pardede - 2106751833](https://github.com/InezBungaria)
 - [Givarrel Veivel Pattiwael - 2106640341](https://github.com/Veivel)
 - [Abraham Javier Sebastian Situmorang - 2106704364](https://github.com/ajsebastians)
 - [Arkan Alexei Andrei - 2106631463](https://github.com/arkanalexei)
@@ -44,7 +44,7 @@ Halaman dimana user yang sudah login dapat mendeposit sampah ke sistem bank samp
 Halaman papan peringkat. Menampilkan user dengan point tertinggi. Tampilan user diurutkan berdasarkan point yang diperoleh user selama menggunakan website.
 
 ### Tukar Poin
-TODO
+Halaman untuk user menukar poin hasil deposit sampah menjadi voucher/perks. Hanya dapat diakses oleh user yang sudah memiliki akun dan login.
 
 ### Green Footprint Calculator
 Kalkulator jumlah *Greenhouse Emissions* yang telah dikurangi oleh user dengan melakukan deposit ke bank sampah. Jumlah tersebut akan ditampilkan pada halaman home user.
