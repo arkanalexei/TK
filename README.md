@@ -38,7 +38,7 @@ TODO
 TODO
 
 ### Deposit Sampah
-TODO
+Halaman dimana user yang sudah login dapat mendeposit sampah ke sistem bank sampah. Tergantung jumlah sampah dan tipenya, user akan mendapatkan koin / kredit yang nanti dapat ditukar.
 
 ### Point Leaderboard
 Halaman papan peringkat. Menampilkan user dengan point tertinggi. Tampilan user diurutkan berdasarkan point yang diperoleh user selama menggunakan website.
