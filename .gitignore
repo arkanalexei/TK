@@ -79,3 +79,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.banksampah\__pycache__
+.tk_pbp_d06\__pycache__
