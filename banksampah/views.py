@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from banksampah.forms import DepositForm
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def home(request):
 
 # @login_required(...)
 def deposit_sampah(request):
-    context = {}
+    context = {'form': DepositForm()}
     return render(request, "deposit.html", context=context)
 
 
