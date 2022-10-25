@@ -12,9 +12,39 @@
 
     <body>
         {% block content %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static 'js/deposit.js' %}"></script>
+        <script>
+            $(document).ready(() => setup());
+        </script>
+
+        <p> Welcome back {{ username }}</p>
+        <br>
         <h1>Halaman Deposit Sampah</h1>
-        <p>TODO</p>
-        {{ form.as_table }}
+        <br>
+        <form>
+            <table>
+                <tr>
+                    <th>Field Name</th>
+                    <th>Field</th>
+                </tr>
+                {{ form.as_table }}
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value=">SUBMIT BUTTON<"/>
+                    </th>
+                </tr>
+            </table>
+        </form>
+
+        <p> {{ username }}'s Deposit History </p>
+        <table id="history-table">
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Mass</th>
+            </tr>
+        </table>
         {% endblock content %}
     </body>
 </html>
