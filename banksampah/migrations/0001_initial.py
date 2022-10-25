@@ -7,10 +7,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-<<<<<<< HEAD
 import django.utils.timezone
-=======
->>>>>>> f4b80d01b7acf9d448825e225467cb30f569dca9
 
 
 class Migration(migrations.Migration):
@@ -23,7 +20,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-<<<<<<< HEAD
             name="WasteDeposit",
             fields=[
                 (
@@ -47,16 +43,6 @@ class Migration(migrations.Migration):
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
-=======
-            name='WasteDeposit',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mass', models.FloatField()),
-                ('description', models.TextField()),
-                ('date_time', models.DateTimeField()),
-                ('type', models.CharField(choices=[('PLASTIK', 'Plastik'), ('KACA', 'Kaca / Beling'), ('KERTAS', 'Kertas / Kardus'), ('ETC', 'Organik & Lainnya')], max_length=32)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
->>>>>>> f4b80d01b7acf9d448825e225467cb30f569dca9
             ],
         ),
     ]
