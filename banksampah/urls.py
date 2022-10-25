@@ -4,6 +4,9 @@ from banksampah.views import *
 app_name='banksampah'
 
 urlpatterns = [
-     path('', home, name=''),
-     path('deposit', deposit_sampah, name='deposit')
+     path('', home, name='home'),
+     path('deposit', deposit_sampah, name='deposit'),
+     path('register/', register, name='register'),
+     path('login/', login_user, name='login'),
+     path('logout/', logout_user, name='logout'),
 ]
