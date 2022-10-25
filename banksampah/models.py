@@ -6,6 +6,12 @@ from django.utils import timezone
 # TODO: migrate
 
 class WasteDeposit(models.Model):
+    CHOICES = (
+            ("PLASTIK", "Plastik"),
+            ("KACA", "Kaca / Beling"),
+            ("KERTAS", "Kertas / Kardus"),
+            ("ETC", "Organik & Lainnya")
+        )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -15,10 +21,4 @@ class WasteDeposit(models.Model):
     mass = models.FloatField()
     description = models.TextField()
     date_time = models.DateField(default=timezone.now)
-    type = models.CharField(max_length=32, choices=(
-            ("PLASTIK", "Plastik"),
-            ("KACA", "Kaca / Beling"),
-            ("KERTAS", "Kertas / Kardus"),
-            ("ETC", "Organik & Lainnya")
-        )
-    )
+    type = models.CharField(max_length=32, choices=CHOICES, default=CHOICES[0])
