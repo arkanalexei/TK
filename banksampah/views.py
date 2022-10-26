@@ -1,5 +1,5 @@
 from hashlib import new
-from banksampah.models import WasteDeposit
+from banksampah.models import WasteDeposit, News
 from banksampah.forms import DepositForm
 from django.utils import timezone
 from django.shortcuts import render, redirect
@@ -12,10 +12,99 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from datetime import datetime as dt
+from django.contrib.admin.views.decorators import staff_member_required
+import json
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
+def read_more(request, news_id):
+    news = get_object_or_404(News, pk=news_id)
+    context = {
+        'news': news
+    }
+    return render(request, "read_more.html", context)
+
+# @staff_member_required(login_url="/login")
+def news(request):
+    return render(request, "news.html")
+
+def news_add(request):
+    if request.method == "POST":
+        data = json.loads(request.POST['data'])
+
+        new_news = News(title=data["title"], description=data["description"], user=request.user)
+        new_news.save()
+
+        return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+
+    return HttpResponse()
+
+@csrf_exempt
+def news_delete(request, news_id):
+    if request.method == "POST":
+        news = get_object_or_404(News, pk=news_id)
+        news.delete()
+
+    return HttpResponse()
+
+def news_json(request):
+    news = News.objects.all()
+    return HttpResponse(serializers.serialize("json", news), content_type="application/json")
+
 def home(request):
-    return render(request, "home.html")
+    mass = [0,0,0,0]
+    is_logged_in = request.user.is_authenticated
+    if is_logged_in:
+        mass = get_mass(request)
+
+    context = {
+        'is_logged_in': is_logged_in,
+        'mass_plastik': mass[0],
+        'mass_kaca': mass[1],
+        'mass_kertas': mass[2],
+        'mass_organik': mass[3],
+        'total_mass': sum(mass)
+    }
+
+    return render(request, "home.html", context)
+
+def get_mass(request):
+    current_user = request.user
+    data = WasteDeposit.objects.filter(user=current_user)
+
+    total_plastik = 0
+    total_kaca = 0
+    total_kertas = 0
+    total_organik = 0
+
+    data_plastik = data.filter(type="PLASTIK")
+    data_kaca = data.filter(type="KACA")
+    data_kertas = data.filter(type="KERTAS")
+    data_organik = data.filter(type="ETC")
+    
+    for data in data_plastik:
+        total_plastik += data.mass
+
+    for data in data_kaca:
+        total_kaca += data.mass
+    
+    for data in data_kertas:
+        total_kertas += data.mass
+
+    for data in data_organik:
+        total_organik += data.mass
+
+    total = [total_plastik, total_kaca, total_kertas, total_organik]
+    new_total = []
+    for num in total:
+        if str(num).endswith('.0'):
+            num = int(num)
+        new_total.append(num)
+
+    return new_total
+
 
 def deposit_sampah(request):
     if request.method == "POST": # if user is logged in, allow them to submit new deposit

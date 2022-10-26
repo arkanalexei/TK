@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block meta %}
+<title>News</title>
+{% endblock meta %}
+
+{% block content %}
+
+{% if user.is_superuser %}
+<!-- The button to open modal -->
+<div class="place-items-center text-center">
+    <label for="my-modal-5" style="width: 20%; vertical-align:middle" class="btn btn-success modal-button mt-4">Create Article</label>
+</div>
+{% else %}
+{% endif %}
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-5" class="modal-toggle" />
+
+<div class="modal" id="newsModal">
+    <form method="POST" action="" id="createNews">
+        {% csrf_token %}
+        <div class="modal-box w-11/12 max-w-5xl bg-white">
+            <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
+            <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Bio" style="height: 300px;"></textarea>
+            
+
+            <div class="modal-action">
+                <input type="submit" value="Submit" class="btn btn-accent bg-success">
+                <label for="my-modal-5" class="btn btn-error">EXIT</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- <div class="card w-96 shadow-xl card-bordered border-success card-compact lg:card-side">
+    <div class="card-body">
+        <h2 class="card-title">1231</h2>
+        <p>321</p>
+        <div class="card-actions justify-end">
+            <button class="btn btn-primary">READ MORE</button>
+            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:login' %}">Login</a></button>
+        </div>
+    </div>
+</div> -->
+
+
+
+<script text="text/javascript">
+    console.log("a")
+
+    var container = document.createElement("div");
+    container.classList.add("grid", "grid-cols-3", "gap-4", "m-4", "place-items-center");
+
+    function getNews() {
+        console.log("b")
+        container.innerHTML = "";
+
+        $.get("{% url 'banksampah:news_json' %}", function (data) {
+            console.log(2)
+            console.log(data)
+            $.each(data, function (i, value) {
+                var card = document.createElement("div");
+                card.classList.add("card", "w-96", "shadow-xl", "card-bordered", "border-success", "card-compact", "lg:card-side")
+
+                var cardBody = document.createElement("div");
+                cardBody.classList.add("card-body", "w-[200px]")
+
+                var cardTitle = document.createElement("h2");
+                cardTitle.classList.add("card-title")
+                cardTitle.innerHTML = value.fields.title
+
+                var cardDescription = document.createElement("span");
+                cardDescription.classList.add("truncate", "block")
+                cardDescription.innerHTML = value.fields.description
+
+                var cardActions = document.createElement("div");
+                cardActions.classList.add("card-actions", "justify-end")
+
+                var url_mask = "{% url 'banksampah:read_more' 1 %}".replace(/1/, `${value.pk}`);
+                var readNews = document.createElement("a");
+                readNews.href = url_mask;
+                readNews.innerHTML = "READ MORE";
+                readNews.classList.add("btn", "btn-accent")
+                          
+                var deleteNews = document.createElement("button");
+                deleteNews.classList.add("btn", "btn-active", "btn-error")
+                deleteNews.setAttribute("onclick", `delNews(${value.pk})`)
+                deleteNews.innerHTML = "DELETE"
+
+                card.appendChild(cardBody);
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardDescription);
+                cardBody.appendChild(cardActions);
+                cardActions.appendChild(readNews);
+                cardActions.appendChild(deleteNews);
+
+                container.appendChild(card);
+            })
+
+            // document.body.getElementsByTagName("cards")[0].appendChild(container);
+        
+            var carddiv = document.getElementById("footer")
+
+            var br = document.createElement("br")
+
+
+            document.body.insertBefore(container, carddiv)
+
+         
+        })
+    }
+
+    function delNews(pk) {
+        var url = `/news/delete/${pk}/`;
+
+        $.ajax({
+                type: "POST",
+                url: url,
+                
+                success: function(response) {
+                    getNews();
+                },
+
+                error: function(response) {
+                    console.log(response)
+                }
+            })
+    }
+
+    $(document).ready(function () {
+
+        getNews();
+
+        console.log("create news")
+        $("#createNews").submit(function (e) {
+            e.preventDefault();
+            console.log("submit")
+            var actionurl = e.currentTarget;
+            var formJSON = JSON.stringify($("#createNews").serializeJSON());
+
+            console.log("e", e)
+            console.log("json", formJSON)
+            console.log("actionurl", actionurl)
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'banksampah:news_add' %}",
+                data: {
+                    data: formJSON,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+
+                success: function(response) {
+                    console.log("response", response)
+                    $('#createNews').each(function () {
+                        this.reset();
+                    });
+
+                    console.log("success")
+                    getNews();
+
+                    $('#my-modal-5').click();
+                },
+
+                error: function(xhr, resp, text) {
+                    console.log("ada error")
+                    console.log("xhr", xhr)
+                    console.log("resp", resp)
+                    console.log("text", text)
+                }
+
+            });
+
+        });
+
+
+
+    })
+</script>
+
+   
+
+
+{% endblock content %}
