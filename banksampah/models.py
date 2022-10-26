@@ -22,3 +22,9 @@ class WasteDeposit(models.Model):
     description = models.TextField()
     date_time = models.DateField(default=timezone.now)
     type = models.CharField(max_length=32, choices=CHOICES, default=CHOICES[0])
+
+class News(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    date = models.DateField(default=timezone.now)
+    title = models.CharField(max_length=255)
+    description = models.TextField()

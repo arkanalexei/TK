@@ -7,32 +7,200 @@
 <title>Scrap.py</title>
 {% endblock meta %}
 
-
+<!-- if user logged in, show bar chart of total deposit in mass -->
+<!-- if not logged in, show "you must be logged in to see your deposit history!" -->
 
 {% block content %}
-<div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/1000/nature?t=1666706729735);">
+<div class="hero min-h-screen"
+    style="background-image: url(https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/Zugpsitze_mountain.jpg?crop=0%2C176%2C3008%2C1654&wid=4000&hei=2200&scl=0.752);">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-primary-content">
-      <div class="max-w-md">
-        <span class="text-6xl font-bold">
-            <a>Welcome to</a>
-            <a>Scrap.py</a>
-        </span>
-        <p class="mb-3"></p>
-        <p class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the amount of waste by recycling and managing waste properly. We work with volunteers to process your waste for a brighter future.</p>
+        <div class="max-w-md">
+            <span class="text-6xl font-bold">
+                <a>Welcome to</a>
+                <a>Scrap.py</a>
+            </span>
+            <p class="mb-3"></p>
+            <p class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the amount of
+                waste by recycling and managing waste properly. We work with volunteers to process your waste for a
+                brighter future.</p>
 
-        <p class="mb-4 italic">"Cleaning the environment, one scrap at a time"</p>
-        <!-- this button will go to register -->
-        <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:register' %}">Get Started</a></button>
-      </div>
+            <p class="mb-4 italic">"Cleaning the environment, one scrap at a time"</p>
+            <!-- this button will go to register -->
+            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:register' %}">Get Started</a></button>
+            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:login' %}">Login</a></button>
+        </div>
     </div>
 </div>
 
 <!-- grid of 1 column divs -->
 <div class="grid grid-cols-1 gap-4">
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title text-6xl font-bold">Guide</h2>
+
+            <div class="grid grid-cols-3 gap-4 text-center">
+                <div class="">
+                    <h4 class="text-xl font-bold">Plastic</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
+                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
+                        Duis quis justo non ex rhoncus tincidunt.</p>
+                </div>
+                <div class="row-span-2">
+                    <img class="mx-auto" src="https://dipowastebank.com/storage/assets/img/configuration/32a80bae4dace99f5c5b3f73fd312bec2608ae3a.png" width="300" height="300">
+                </div>
+                <div class="">
+                    <h4 class="text-xl font-bold">Kaca</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
+                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
+                        Duis quis justo non ex rhoncus tincidunt.</p>
+                </div>
+                
+                <div class="">
+                    <h4 class="text-xl font-bold">Kertas</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
+                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
+                        Duis quis justo non ex rhoncus tincidunt.</p>
+                </div>
+                <div class="">
+                    <h4 class="text-xl font-bold">Organik</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
+                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
+                        Duis quis justo non ex rhoncus tincidunt.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title text-6xl font-bold">Statistics</h2>
+            {% if is_logged_in %}
+            <span class="text-xl font-medium">
+                <a>So far, you have donated </a>
+                <a class="text-lime-600 font-bold">{{total_mass}}</a>
+                <a>kgs worth of trash! Here's the breakdown:</a>
+            </span>
+
+            <div class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content">
+
+                <div class="stat place-items-center">
+                    <div class="stat-title ">Plastik</div>
+                    <div class="stat-value">{{mass_plastik}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Kaca</div>
+                    <div class="stat-value">{{mass_kaca}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Kertas</div>
+                    <div class="stat-value">{{mass_kertas}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Organik</div>
+                    <div class="stat-value">{{mass_organik}} Kg</div>
+                </div>
+
+            </div>
+            <div class="">
+
+                <canvas class="p-10" id="chartPie" style="margin: 0 auto;"></canvas>
+
+                <!-- Variables -->
+                <div id="mass_plastik" style="display: none;">{{mass_plastik}}</div>
+                <div id="mass_kaca" style="display: none;">{{mass_kaca}}</div>
+                <div id="mass_kertas" style="display: none;">{{mass_kertas}}</div>
+                <div id="mass_organik" style="display: none;">{{mass_organik}}</div>
+
+
+                <!-- Required chart.js -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <!-- Chart pie -->
+                <script>
+                    var plastik = document.getElementById("mass_plastik").innerHTML;
+                    var kaca = document.getElementById("mass_kaca").innerHTML;
+                    var kertas = document.getElementById("mass_kertas").innerHTML;
+                    var organik = document.getElementById("mass_organik").innerHTML;
+
+                    const dataPie = {
+                        labels: ["Plastik", "Kaca", "Kertas", "Organik"],
+                        datasets: [
+                            {
+                                label: "My First Dataset",
+                                data: [plastik, kaca, kertas, organik],
+                                backgroundColor: [
+                                    "#CCE2CB",
+                                    "#FFE1E9",
+                                    "#FDD7C2",
+                                    "#F6EAC2",
+                                ],
+                                hoverOffset: 4,
+                            },
+                        ],
+                    };
+
+                    const configPie = {
+                        type: "pie",
+                        data: dataPie,
+                        options: {
+                            plugins: {
+                                legend: false,
+                                tooltip: true,
+                            },
+                        },
+                    };
+
+                    var chartBar = new Chart(document.getElementById("chartPie"), configPie);
+                </script>
+            </div>
+
+            {% else %}
+            <span class="text-xl font-medium">
+                <a>Login to see your stats!</a>
+            </span>
+            <div class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content blur-sm">
+
+                <div class="stat place-items-center">
+                    <div class="stat-title ">Plastik</div>
+                    <div class="stat-value">{{mass_plastik}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Kaca</div>
+                    <div class="stat-value">{{mass_kaca}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Kertas</div>
+                    <div class="stat-value">{{mass_kertas}} Kg</div>
+                </div>
+
+                <div class="stat place-items-center">
+                    <div class="stat-title">Organik</div>
+                    <div class="stat-value">{{mass_organik}} Kg</div>
+                </div>
+
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-body">
             <h2 class="card-title">What is Scrap.py?</h2>
+            <p>...</p>
         </div>
     </div>
 
@@ -40,4 +208,3 @@
 
 
 {% endblock content %}
-
