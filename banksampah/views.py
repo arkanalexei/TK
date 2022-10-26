@@ -44,7 +44,7 @@ def news_add(request):
 @csrf_exempt
 def news_delete(request, news_id):
     if request.method == "POST":
-        news = get_object_or_404(News, pk=news_id)
+        news = get_object_or_404(News, pk=news_id, user=request.user)
         news.delete()
 
     return HttpResponse()
