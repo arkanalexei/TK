@@ -22,7 +22,8 @@
         <br>
         <h1>Halaman Deposit Sampah</h1>
         <br>
-        <form>
+        <form method="POST" action="">
+        {% csrf_token %}
             <table>
                 <tr>
                     <th>Field Name</th>
@@ -31,7 +32,7 @@
                 {{ form.as_table }}
                 <tr>
                     <th colspan="2">
-                        <input type="submit" value=">SUBMIT BUTTON<"/>
+                        <input type="submit" value="Submit"/>
                     </th>
                 </tr>
             </table>

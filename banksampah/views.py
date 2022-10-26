@@ -17,26 +17,36 @@ from datetime import datetime as dt
 def home(request):
     return render(request, "home.html")
 
-# @login_required(...)
 def deposit_sampah(request):
-    context = {'form': DepositForm(),
-               'username': request.COOKIES['username']}
-    return render(request, "deposit.html", context=context)
+    if request.method == "POST": # if user is logged in, allow them to submit new deposit
+        if request.user.is_authenticated:
+            form = Form(request.POST)
+            new_deposit = WasteDeposit()
+            new_deposit.user = request.user
+            new_deposit.date_time = dt.now()
+            new_deposit.description = form.data['description']
+            new_deposit.type = form.data['type']
+            new_deposit.mass = form.data['mass']
+            new_deposit.save()
+            
+        else: # if user is not logged in
+            return redirect('banksampah:login')
+        
+    if request.user.is_authenticated: # if user is logged in, allow to see deposit history
+        context = {'form': DepositForm(),
+                'username': request.COOKIES['username']}
+        return render(request, "deposit.html", context=context)
+    
+    else: # if user is not logged in
+        print("test")
+        context = {'form': DepositForm, 
+                   'username': None} # TODO: django sends something to make js delete history table
+        return render(request, "deposit.html", context=context)
 
 # @login_required(...)
-def get_user_deposits(request):
-    if request.method == "POST":
-        form = Form(request.POST)
-        new_deposit = WasteDeposit()
-        new_deposit.user = request.user
-        new_deposit.date_time = dt.now()
-        new_deposit.description = form.data['description']
-        new_deposit.type = form.data['type']
-        new_deposit.mass = form.data['mass']
-        new_deposit.save()
-        
+def get_user_deposits(request):    
     current_user = request.user
-    data = WasteDeposit.objects.filter(user=current_user)
+    data = WasteDeposit.objects.filter(user=current_user) # TODO: reverse this queryset
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
