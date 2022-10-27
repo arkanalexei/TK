@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'OldLondon'; /*a name to be used later*/
+    src: url("../fonts/OldLondon.c8c687cbf9cb.ttf"); /*URL to font*/
+}
+
+h1 {
+    color:red;
+    font-family: 'OldLondon';
+}

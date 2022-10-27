@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'OldLondon'; /*a name to be used later*/
+    src: url("../fonts/OldLondon.c8c687cbf9cb.ttf"); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'Chomsky'; /*a name to be used later*/
+    src: url("../fonts/Chomsky.0553d28f2f8a.otf"); /*URL to font*/
+}
+
+
+h1 {
+    font-family: 'OldLondon';
+}
