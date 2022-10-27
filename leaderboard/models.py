@@ -1,10 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
-from requests import request
+from django.db.models import Model
+from django.conf import settings
 # Create your models here.
 
 class Achiever(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rank = models.IntegerField(default=1)
-    username = models.CharField(max_length=100)
-    points = models.IntegerField(default=0)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        points = models.IntegerField()
+    )

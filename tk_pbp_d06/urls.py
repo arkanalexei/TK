@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('banksampah.urls')),
     path('leaderboard/', include('leaderboard.urls')),
+    path('deposit/', include('deposit.urls')),
 ]

@@ -18,11 +18,15 @@
             $(document).ready(() => setup());
         </script>
 
-        <p> Welcome back {{ username }}</p>
+        <!-- Page Header -->
+        {% if is_logged_in %}
+            <p> Welcome back {{ username }}</p>
+        {% endif %}
         <br>
-        <h1>Halaman Deposit Sampah</h1>
-        <br>
-        <form method="POST" action="">
+        <button id="showModal">{{ action_button_label }}</button>
+
+        <!-- New Deposit Form -->
+        <form id="depositForm" method="POST" action="">
         {% csrf_token %}
             <table>
                 <tr>
@@ -30,22 +34,25 @@
                     <th>Field</th>
                 </tr>
                 {{ form.as_table }}
-                <tr>
-                    <th colspan="2">
-                        <input type="submit" value="Submit"/>
-                    </th>
-                </tr>
             </table>
         </form>
+        <button onclick="submitDeposit(depositForm)">Submit</button>
 
-        <p> {{ username }}'s Deposit History </p>
-        <table id="history-table">
-            <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Mass</th>
-            </tr>
-        </table>
+        <!-- Recent Deposit Table  -->
+        {% if is_logged_in %}
+            <p> {{ username }}'s Recent Deposits </p>
+            <table id="history-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Mass</th>
+                </tr>
+            </table>
+        {% else %}
+            <p> Login to see your recent deposits! </p>
+        {% endif %}
+        <br>
+
         {% endblock content %}
     </body>
 </html>
