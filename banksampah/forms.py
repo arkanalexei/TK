@@ -1,11 +1,6 @@
-from ast import Mod
 from django.forms import Form, ModelForm
-from banksampah.models import *
-
-class DepositForm(ModelForm):
-    class Meta:
-        model = WasteDeposit
-        fields = ['type', 'description', 'mass']
+from deposit.models import WasteDeposit
+from banksampah.models import News
 
 class NewsForm(ModelForm):
     class Meta:

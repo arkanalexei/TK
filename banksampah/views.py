@@ -1,6 +1,7 @@
 from hashlib import new
-from banksampah.models import WasteDeposit, News
-from banksampah.forms import DepositForm
+from deposit.models import WasteDeposit
+from banksampah.models import News
+from deposit.forms import DepositForm
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -16,6 +17,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 import json
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from banksampah.forms import NewsForm
+import ast
 
 # Create your views here.
 
@@ -26,20 +29,48 @@ def read_more(request, news_id):
     }
     return render(request, "read_more.html", context)
 
-# @staff_member_required(login_url="/login")
+@login_required(login_url="/login")
 def news(request):
-    return render(request, "news.html")
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    form = NewsForm()
+
+    context = {
+        'num_visits': num_visits,
+        'form': form
+    }
+
+    return render(request, "news.html", context)
+
 
 def news_add(request):
-    if request.method == "POST":
-        data = json.loads(request.POST['data'])
+    form = NewsForm()
 
-        new_news = News(title=data["title"], description=data["description"], user=request.user)
+    if request.method == "POST":
+        form = NewsForm(request.POST)
+        data = request.POST['data']
+        data2 = ast.literal_eval(data)
+
+        new_news = News()
+        new_news.user = request.user
+        new_news.date = timezone.now().strftime("%Y-%m-%d")
+        new_news.description = data2['description']
+        new_news.title = data2['title']
         new_news.save()
 
-        return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+        return HttpResponseRedirect(reverse("banksampah:news"))
+    else:
+        return redirect('banksampah:news')
 
-    return HttpResponse()
+    # if request.method == "POST":
+    #     data = json.loads(request.POST['data'])
+
+    #     new_news = News(title=data["title"], description=data["description"], user=request.user)
+    #     new_news.save()
+
+    #     return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+
+    # return HttpResponse()
 
 @csrf_exempt
 def news_delete(request, news_id):
@@ -107,39 +138,6 @@ def get_mass(request):
     net_footprint = (new_total[0] * 249 + new_total[1] * -454 + new_total[2] * -2088 + new_total[3] * -3247) / 1000
     new_total.append(net_footprint)
     return new_total
-
-
-def deposit_sampah(request):
-    if request.method == "POST": # if user is logged in, allow them to submit new deposit
-        if request.user.is_authenticated:
-            form = Form(request.POST)
-            new_deposit = WasteDeposit()
-            new_deposit.user = request.user
-            new_deposit.date_time = dt.now()
-            new_deposit.description = form.data['description']
-            new_deposit.type = form.data['type']
-            new_deposit.mass = form.data['mass']
-            new_deposit.save()
-            
-        else: # if user is not logged in
-            return redirect('banksampah:login')
-        
-    if request.user.is_authenticated: # if user is logged in, allow to see deposit history
-        context = {'form': DepositForm(),
-                'username': request.COOKIES['username']}
-        return render(request, "deposit.html", context=context)
-    
-    else: # if user is not logged in
-        print("test")
-        context = {'form': DepositForm, 
-                   'username': None} # TODO: django sends something to make js delete history table
-        return render(request, "deposit.html", context=context)
-
-# @login_required(...)
-def get_user_deposits(request):    
-    current_user = request.user
-    data = WasteDeposit.objects.filter(user=current_user) # TODO: reverse this queryset
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def register(request):
     form = UserCreationForm()

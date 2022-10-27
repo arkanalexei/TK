@@ -95,3 +95,5 @@ tk_pbp_d06/__pycache__/urls.cpython-310.pyc
 tk_pbp_d06/__pycache__/wsgi.cpython-310.pyc
 db.sqlite3
 db.sqlite3
+*.sqlite3
+*.pyc
