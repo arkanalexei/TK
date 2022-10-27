@@ -54,7 +54,7 @@ def news_json(request):
     return HttpResponse(serializers.serialize("json", news), content_type="application/json")
 
 def home(request):
-    mass = [0,0,0,0]
+    mass = [0,0,0,0,0]
     is_logged_in = request.user.is_authenticated
     if is_logged_in:
         mass = get_mass(request)
@@ -65,7 +65,8 @@ def home(request):
         'mass_kaca': mass[1],
         'mass_kertas': mass[2],
         'mass_organik': mass[3],
-        'total_mass': sum(mass)
+        'total_mass': sum(mass),
+        'net_footprint':mass[4]
     }
 
     return render(request, "home.html", context)
@@ -103,6 +104,8 @@ def get_mass(request):
             num = int(num)
         new_total.append(num)
 
+    net_footprint = (new_total[0] * 249 + new_total[1] * -454 + new_total[2] * -2088 + new_total[3] * -3247) / 1000
+    new_total.append(net_footprint)
     return new_total
 
 

@@ -20,7 +20,7 @@
 </head>
     
 <body class="h-screen min-h-screen">
-    <div class="navbar bg-success-content text-primary-content">
+    <div class="navbar bg-success-content text-primary-content z-[100]">
         <div class="flex-1">
           <a href="{% url 'banksampah:home' %}" class="btn btn-ghost normal-case text-xl">Scrap.py</a>
         </div>
@@ -39,7 +39,11 @@
               </ul>
             </li>
             <li><a>Item 3</a></li>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'banksampah:logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'banksampah:login' %}">Login</a></li>
+            {% endif %}
           </ul>
         </div>
     </div>
@@ -47,7 +51,7 @@
     {% block content %}
     {% endblock content %}
     
-    <div id="divcards"></div>
+    <div hidden id="divcards"></div>
 
     <footer id="footer" class="footer footer-center p-10 bg-success-content text-primary-content sticky top-[100vh]">
         <div>

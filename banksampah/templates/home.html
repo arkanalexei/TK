@@ -26,9 +26,10 @@
                 brighter future.</p>
 
             <p class="mb-4 italic">"Cleaning the environment, one scrap at a time"</p>
+            {% if not user.is_authenticated %}
             <!-- this button will go to register -->
-            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:register' %}">Get Started</a></button>
-            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:login' %}">Login</a></button>
+            <a class="btn btn-active btn-accent" href="{% url 'banksampah:register' %}">Get Started</a>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -49,7 +50,7 @@
                         Duis quis justo non ex rhoncus tincidunt.</p>
                 </div>
                 <div class="row-span-2">
-                    <img class="mx-auto" src="https://dipowastebank.com/storage/assets/img/configuration/32a80bae4dace99f5c5b3f73fd312bec2608ae3a.png" width="300" height="300">
+                    <img class="mx-auto" src="{% static 'images/maskot2.png' %}" width="300" height="300">
                 </div>
                 <div class="">
                     <h4 class="text-xl font-bold">Kaca</h4>
@@ -86,10 +87,17 @@
             <span class="text-xl font-medium">
                 <a>So far, you have donated </a>
                 <a class="text-lime-600 font-bold">{{total_mass}}</a>
-                <a>kgs worth of trash! Here's the breakdown:</a>
+                <a>kgs worth of trash!</a>
+                <a>With net GHG emissions from recycling of</a>
+                {% if net_footprint > 0 %}
+                    <a class="text-error font-bold">{{net_footprint}}</a>
+                {% else %}
+                    <a class="text-lime-600  font-bold">{{net_footprint}}</a>
+                {% endif %}
+                <a> Kgs of CO2-eq/kg of mixed recyclables. Here's the breakdown:</a>
             </span>
 
-            <div class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content">
+            <div id="statistics" class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content">
 
                 <div class="stat place-items-center">
                     <div class="stat-title ">Plastik</div>
@@ -110,6 +118,8 @@
                     <div class="stat-title">Organik</div>
                     <div class="stat-value">{{mass_organik}} Kg</div>
                 </div>
+
+                
 
             </div>
             <div class="">
@@ -164,6 +174,7 @@
                     var chartBar = new Chart(document.getElementById("chartPie"), configPie);
                 </script>
             </div>
+
 
             {% else %}
             <span class="text-xl font-medium">

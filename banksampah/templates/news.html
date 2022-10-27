@@ -48,13 +48,13 @@
     </div>
 </div> -->
 
-
+{{ request.user.id|json_script:"user_id" }}
 
 <script text="text/javascript">
     console.log("a")
 
     var container = document.createElement("div");
-    container.classList.add("grid", "grid-cols-3", "gap-4", "m-4", "place-items-center");
+    container.classList.add("grid", "grid-cols-3", "gap-4", "m-4", "place-items-center","mx-auto");
 
     function getNews() {
         console.log("b")
@@ -97,12 +97,15 @@
                 cardBody.appendChild(cardDescription);
                 cardBody.appendChild(cardActions);
                 cardActions.appendChild(readNews);
-                cardActions.appendChild(deleteNews);
+
+                const user_id = JSON.parse(document.getElementById('user_id').textContent);
+                if (user_id == value.fields.user) {
+                    cardActions.appendChild(deleteNews);
+                }
+
 
                 container.appendChild(card);
-            })
-
-            // document.body.getElementsByTagName("cards")[0].appendChild(container);
+            })  
         
             var carddiv = document.getElementById("footer")
 
