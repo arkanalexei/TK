@@ -17,6 +17,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 import json
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
+from banksampah.forms import NewsForm
+import ast
 
 # Create your views here.
 
@@ -27,20 +29,48 @@ def read_more(request, news_id):
     }
     return render(request, "read_more.html", context)
 
-# @staff_member_required(login_url="/login")
+@login_required(login_url="/login")
 def news(request):
-    return render(request, "news.html")
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    form = NewsForm()
+
+    context = {
+        'num_visits': num_visits,
+        'form': form
+    }
+
+    return render(request, "news.html", context)
+
 
 def news_add(request):
-    if request.method == "POST":
-        data = json.loads(request.POST['data'])
+    form = NewsForm()
 
-        new_news = News(title=data["title"], description=data["description"], user=request.user)
+    if request.method == "POST":
+        form = NewsForm(request.POST)
+        data = request.POST['data']
+        data2 = ast.literal_eval(data)
+
+        new_news = News()
+        new_news.user = request.user
+        new_news.date = timezone.now().strftime("%Y-%m-%d")
+        new_news.description = data2['description']
+        new_news.title = data2['title']
         new_news.save()
 
-        return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+        return HttpResponseRedirect(reverse("banksampah:news"))
+    else:
+        return redirect('banksampah:news')
 
-    return HttpResponse()
+    # if request.method == "POST":
+    #     data = json.loads(request.POST['data'])
+
+    #     new_news = News(title=data["title"], description=data["description"], user=request.user)
+    #     new_news.save()
+
+    #     return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+
+    # return HttpResponse()
 
 @csrf_exempt
 def news_delete(request, news_id):

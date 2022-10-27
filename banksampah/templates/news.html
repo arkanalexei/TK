@@ -5,6 +5,7 @@
 
 {% block meta %}
 <title>News</title>
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
 {% endblock meta %}
 
 {% block content %}
@@ -24,29 +25,25 @@
     <form method="POST" action="" id="createNews">
         {% csrf_token %}
         <div class="modal-box w-11/12 max-w-5xl bg-white">
-            <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
-            <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Bio" style="height: 300px;"></textarea>
+            <!-- <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
+            <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Article" style="height: 300px;"></textarea> -->
             
+            {{ form.as_table }}
 
             <div class="modal-action">
-                <input type="submit" value="Submit" class="btn btn-accent bg-success">
+                <input name="submit" type="submit" value="Submit" class="btn btn-accent bg-success">
+                <!-- <button type="submit" value="submit">Submit</button> -->
                 <label for="my-modal-5" class="btn btn-error">EXIT</label>
             </div>
         </div>
     </form>
 </div>
 
+<div>
+    <h1 id="newsHead" class="font-bold text-6xl text-center p-2">North Depok Morning Post</h1>
+    <h1 class="font-medium text-lg text-center italic pb-4">Reporting Since 1939 with {{num_visits}}k satisfied readers</h1>
+</div>
 
-<!-- <div class="card w-96 shadow-xl card-bordered border-success card-compact lg:card-side">
-    <div class="card-body">
-        <h2 class="card-title">1231</h2>
-        <p>321</p>
-        <div class="card-actions justify-end">
-            <button class="btn btn-primary">READ MORE</button>
-            <button class="btn btn-active btn-accent"><a href="{% url 'banksampah:login' %}">Login</a></button>
-        </div>
-    </div>
-</div> -->
 
 {{ request.user.id|json_script:"user_id" }}
 
