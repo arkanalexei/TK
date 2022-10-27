@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'OldLondon'; /*a name to be used later*/
+    src: url('../fonts/OldLondon.ttf'); /*URL to font*/
+}
+
+#newsHead {
+    font-family: 'OldLondon';
+}

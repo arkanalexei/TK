@@ -1,0 +1,10 @@
+.section::-webkit-scrollbar-thumb {
+    border: 5px solid transparent;
+    border-radius: 100px;
+    background-color: #8070d4;
+    background-clip: content-box;
+  }
+
+p {
+    color:red
+}

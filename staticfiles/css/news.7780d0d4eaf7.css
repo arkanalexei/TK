@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ChomskyRegular'; /*a name to be used later*/
+    src: url('https://www.1001fonts.com/download/font/chomsky.regular.otf'); /*URL to font*/
+}
+
+h1 {
+    color:red;
+    font-family: 'ChomskyRegular';
+}
