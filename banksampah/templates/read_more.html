@@ -9,15 +9,13 @@
 
 {% block content %}
 
-
-
-<div class="text-center m-4">
+<div class="text-center bg-white p-4">
 
     <h1 class="font-bold text-4xl">{{news.title}}</h1>
     <h2 class="mt-2 font-bold text-md">Created {{news.date}} - News Issue #{{news.pk}} by {{news.user}}</h2>
 
 
-    <p style="white-space: pre-wrap;" class="m-4 px-60 text-justify">{{news.description}}</p>
+    <p style="white-space: pre-wrap;" class="mt-4 px-60 text-justify">{{news.description}}</p>
 
 </div>
 
