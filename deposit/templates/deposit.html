@@ -21,9 +21,15 @@
         <!-- Page Header -->
         <br>
         {% if is_logged_in %}
-            <p> Welcome back {{ username }}!</p>
+        <div>
+            <span> Welcome back {{ username }}! You have </span>
+            <b><span class="point-count"></span></b>
+            <span> points.</span>
+        </div>
         {% endif %}
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
         <br>
 
         <!-- The button to open modal -->
@@ -59,9 +65,10 @@
             <p> {{ username }}'s Recent Deposits </p>
             <table>
                 <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Mass</th>
+                    <th>Deposit Date</th>
+                    <th>Waste Type</th>
+                    <th>Mass(KG)</th>
+                    <th>Description</th>
                 </tr>
                 <tbody id="history-table"></tbody>
             </table>

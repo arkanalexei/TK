@@ -20,6 +20,8 @@ from django.views.decorators.csrf import csrf_exempt
 from banksampah.forms import NewsForm
 import ast
 
+from leaderboard.models import Achiever
+
 # Create your views here.
 
 def read_more(request, news_id):
