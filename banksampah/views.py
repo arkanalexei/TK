@@ -1,7 +1,7 @@
 from hashlib import new
 from deposit.models import WasteDeposit
 from banksampah.models import News
-from banksampah.forms import DepositForm
+from deposit.forms import DepositForm
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib import messages
