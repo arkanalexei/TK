@@ -8,6 +8,6 @@ class Achiever(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         null=True,
-        blank=True,
-        points = models.IntegerField()
+        blank=True  
     )
+    points = models.IntegerField()
