@@ -15,12 +15,12 @@ class Achiever(models.Model):
     points = models.IntegerField(default=0)
 
 # belum migrate
-class Feedback(models.Model):
+class Comment(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         null=True,
         blank=True  
     )
-    feedback = models.TextField()
+    comment = models.TextField()
     date_time = models.DateField(auto_now_add=True)

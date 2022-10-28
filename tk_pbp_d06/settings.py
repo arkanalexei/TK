@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "banksampah",
     "leaderboard",
     "deposit",
+    "about",
 ]
 
 MIDDLEWARE = [
