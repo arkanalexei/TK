@@ -5,6 +5,7 @@
 
 {% block meta %}
 <title>Scrap.py</title>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock meta %}
 
 <!-- if user logged in, show bar chart of total deposit in mass -->
@@ -21,7 +22,7 @@
                 <a>Scrap.py</a>
             </span>
             <p class="mb-3"></p>
-            <p class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the amount of
+            <p id="scrappy" class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the amount of
                 waste by recycling and managing waste properly. We work with volunteers to process your waste for a
                 brighter future.</p>
 
@@ -34,9 +35,12 @@
     </div>
 </div>
 
-<!-- grid of 1 column divs -->
-<div class="grid grid-cols-1 gap-4">
 
+
+
+
+<!-- grid of 1 column divs -->
+<div class="grid grid-cols-1 gap-2 bg-success">
     <div class="card">
         <div class="card-body">
             <h2 class="card-title text-6xl font-bold">Guide</h2>
@@ -205,13 +209,6 @@
             </div>
             {% endif %}
 
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-body">
-            <h2 class="card-title">What is Scrap.py?</h2>
-            <p>...</p>
         </div>
     </div>
 
