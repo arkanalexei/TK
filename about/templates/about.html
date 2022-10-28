@@ -13,8 +13,99 @@
     <body>
         {% block content %}
 
-        <h1><b>Coming Soon</b></h1>
+        <div class="hero min-h-fit"
+            style="background-image: url();">
+            <div class="hero-overlay bg-opacity-60"></div>
+            <div class="hero-content text-center text-primary-content">
+                <div class="max-w-md">
+
+                    <span class="text-6xl font-bold">
+                        <a>About Us</a>
+                    </span>
+                    <p class="mb-3"></p>
+                    
+                    <span class="text-4xl font-bold">
+                        <a>Apa itu Scrap.py?</a>
+                    </span>
+                    <p class="mb-3 text-lg text-justify">Scrap.py merupakan bank sampah dengan pemanfaatan
+                        aplikasi berbasis web yang diciptakan untuk memfasilitasi masyarakat dalam berkontribusi
+                        mengelola sampah secara berkelanjutan. Scrap.py hadir sebagai bentuk nyata tanggung jawab kami
+                        kepada lingkungan melalui kegiatan 3R (reduce, reuse, recycle).
+                        </p>
+
+                    <span class="text-4xl font-bold">
+                        <a>Visi dan Misi</a>
+                    </span>
+                    <h2 class="text-lg text-center"><b>Visi</b></h2>
+                    <h1 class="text-lg text-justify">Indonesia Peduli dan Mandiri dalam Pengelolaan Sampah yang Berkelanjutan</h1>
+                    <h2 class="text-lg text-center"><b>Misi</b></h2>
+                    <h1 class="text-lg text-left"> 1) Memberdayakan Pemilahan Sampah</h1>
+                    <h1 class="text-lg text-left"> 2) Meningkatkan Partisipasi Masyarakat dalam Pengelolaan Lingkungan</h1>
+                    <h1 class="text-lg text-left"> 3) Mewujudkan Masyarakat yang Lebih Kreatif, Inovatif, Inspiratif dan Mandiri di Bidang Pengelolaan Lingkungan</h1>
+
+                    <span class="text-4xl font-bold">
+                        <a>Tim Scrap.py</a>
+                    </span>
+                    <h1 class="text-lg text-left"> 1. Laela Putri Salsa Biella - 2106751562</h1>
+                    <h1 class="text-lg text-left"> 2. Inez Bungaria Octaviana Pardede - 2106751833</h1>
+                    <h1 class="text-lg text-left"> 3. Givarrel Veivel Pattiwael - 2106640341</h1>
+                    <h1 class="text-lg text-left"> 4. Abraham Javier Sebastian Situmorang - 2106704364</h1>
+                    <h1 class="text-lg text-left"> 5. Arkan Alexei Andrei - 2106631463</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero min-h-fit"
+        style="background-image: url();">
+            <div class="hero-overlay bg-opacity-100"></div>
+            <div class="hero-content text-center text-primary-content">
+                <div class="container px-5">
+                    <div class="row gx-3">
+                        <span class="text-6xl font-bold">
+                            <a>What Our Users Say</a>
+                        </span>
+                        <div class="col-lg-15">
+                            <br>
+                            <div class="row gx-3 row-cols-2 row-cols-lg-4 row-cols-md-3">
+                                {% for feedback in feedbacks %}
+                                <div class="col mb-5 h-100">
+                                    <p class="mb-0">{{feedback.message}}</p>
+                                    <h1 class="h3 fw-bolder mb-1" style="color: rgb(207, 178, 14);">
+                                        {% if feedback.ratings == "1" %} &#9733 &#9734 &#9734 &#9734 &#9734 {% endif %}
+                                        {% if feedback.ratings == "2" %} &#9733 &#9733 &#9734 &#9734 &#9734 {% endif %}
+                                        {% if feedback.ratings == "3" %} &#9733 &#9733 &#9733 &#9734 &#9734 {% endif %}
+                                        {% if feedback.ratings == "4" %} &#9733 &#9733 &#9733 &#9733 &#9734 {% endif %}
+                                        {% if feedback.ratings == "5" %} &#9733 &#9733 &#9733 &#9733 &#9733 {% endif %}
+                                    </h1>
+                                    <h2 class="h6">from {{feedback.pengirim}} </h2>
+                                </div>
+                                {% endfor %}
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
+        <div class="hero min-h-max"
+        style="background-image: url();">
+            <div class="hero-overlay bg-opacity-60"></div>
+            <div class="hero-content text-center text-primary-content">
+                <div class="max-w-md">
+                    <span class="text-4xl font-bold">
+                        <a>Send Your Feedbacks!</a>
+                    </span>
+                    <form action="" form method ="post">
+                        {% csrf_token %}
+                        {{ form }}
+                
+                        <button type="submit" class="btn btn-primary">Submit</button>  
+                        </form>
+                </div>
+            </div>
+        </div>
+  
         {% endblock content %}
     </body>
 </html>
