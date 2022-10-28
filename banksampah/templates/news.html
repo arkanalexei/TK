@@ -27,7 +27,6 @@
         <div class="modal-box w-11/12 max-w-5xl bg-white">
             <!-- <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
             <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Article" style="height: 300px;"></textarea> -->
-            
             {{ form.as_table }}
 
             <div class="modal-action">
@@ -41,7 +40,7 @@
 
 <div>
     <h1 id="newsHead" class="font-bold text-6xl text-center p-2">North Depok Morning Post</h1>
-    <h1 class="font-medium text-lg text-center italic pb-4">Reporting Since 1939 with {{num_visits}}k satisfied readers</h1>
+    <h1 class="font-medium text-lg text-center italic pb-4">You have visited this page {{num_visits}} times today</h1>
 </div>
 
 
@@ -178,6 +177,19 @@
 
         });
 
+        // get id_title and id_description to modify
+        var title = document.getElementById("id_title");
+        title.classList.add("input", "input-bordered", "w-full", "bg-white", "border-accent")
+        title.placeholder = "News Title"
+
+        var description = document.getElementById("id_description");
+        description.classList.add("textarea", "textarea-success", "w-full", "bg-white", "mt-2")
+        description.style.height = "300px";
+        description.placeholder = "Article"
+        
+
+        // <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
+        // <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Article" style="height: 300px;"></textarea>
 
 
     })

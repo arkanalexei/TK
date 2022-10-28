@@ -96,7 +96,7 @@ def home(request):
         'mass_kaca': mass[1],
         'mass_kertas': mass[2],
         'mass_organik': mass[3],
-        'total_mass': sum(mass),
+        'total_mass': sum(mass) - mass[4],
         'net_footprint':mass[4]
     }
 
