@@ -11,14 +11,16 @@
   <body>
     {% block content %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{% static 'js/deposit.js' %}"></script>
-    
-    
+    <script src="{% static 'js/leaderboard.js' %}"></script>
+    <script>
+      $(document).ready(() => setup());
+    </script>
 
     <div class="card mb-4">
       <p class="font-bold text-4xl text-center pt-4">Leaderboard</p>
       <div class="card-body">
-        <!-- btn group -->
+
+        <!-- btn group top 10 top 20-->
         <div class="row mb-3">
           <div class="col">
               <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
@@ -32,6 +34,7 @@
           </div>
         </div>
 
+        <!-- leaderboard table -->
         <table
           class="table rounded-2 table-success table-striped table-hover table-bordered"
         >
@@ -42,41 +45,45 @@
               <th>Points</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+          <tbody id="leaderboard-table">
+            <!-- <tr>
               <td>1</td>
               <td>testtttttttttttttt</td>
               <td>1961</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>The Eagles</td>
-              <td>1972</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Earth, Wind, and Fire</td>
-              <td>1975</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>testtttttttttttttt</td>
-              <td>1961</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
+
       </div>
     </div>
 
+
     <div class="card">
       <div class="card-body">
+
+        <!-- comments sections -->
+        <h2> Comments ....</h2>
+        {% if not user.comments.all %}
+          <p class="text-center">No comments yet</p>
+        {% else %}
+          {% for comment in user.comments.all %}
+            <strong>
+              {{ comment.user.username }} -
+              {{ comment.date_added}}
+            </strong>
+            {{ comment.comment }}
+          {% endfor %}
+        {% endif %}
+
+        <br></br>
+
         <!-- The button to open modal -->
         <p>
           Please write your comments here, the comments will be displayed on the page
         </p>
         <div>
           <label for="form-modal" class="mt-4 btn modal-button"
-            >Send feedback</label
+            >Send comment</label
           >
         </div>
       </div>
@@ -99,7 +106,7 @@
               <div class="md-form ">
                 <i class="fas fa-user prefix grey-text"></i>
                 <label class="mb-2">Write your comment</label>
-                {{ form }}
+                {{ form.as_p }}
               </div>
             </tr>
           </form>
@@ -107,9 +114,10 @@
         
         <!-- button submit (on progress) -->
         <tr colspan="2">
-          <button class="btn d-grid gap-2 col-2 mx-auto" onclick="">
+          <input id="comment_button" value="submit" type="submit" class="btn d-grid gap-2 col-2 mx-auto" onclick="submitComment(messageForm)">
             Submit
-          </button>
+          </input>
+          <!-- <input type="submit" id="submitButton"  name="submitButton" value="Submit"> -->
         </tr>
       </label>
     </label>

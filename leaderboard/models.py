@@ -1,6 +1,7 @@
 from email.policy import default
 from django.db import models
 from django.conf import settings
+from requests import request
 
 
 # Create your models here.
@@ -20,7 +21,11 @@ class Comment(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         null=True,
-        blank=True  
+        blank=True,
+        related_name='comments'  
     )
     comment = models.TextField()
-    date_time = models.DateField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.username, self.comment)

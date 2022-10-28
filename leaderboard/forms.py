@@ -9,6 +9,6 @@ class CommentForm(ModelForm):
     comment = forms.CharField(widget=forms.TextInput(
         attrs={
             "class": 'form-control validate mb-3 col-12',
-            "id": 'comment',
+            "id": 'comment_text',
         }
     ), label='', max_length=100)

@@ -26,7 +26,7 @@ function updateHistoryTable() {
 
 function updatePointCount() {
     $.getJSON(
-        "json/achiever/", (data) => {
+        "json/", (data) => {
             $(`.point-count`).empty();
             $(`.point-count`).append(data[0].fields.points);
         }
