@@ -72,7 +72,7 @@
       <div class="card-body">
         <!-- The button to open modal -->
         <p>
-          please write your comments here, the comments will be displayed on the page
+          Please write your comments here, the comments will be displayed on the page
         </p>
         <div>
           <label for="form-modal" class="mt-4 btn modal-button"
@@ -96,9 +96,9 @@
           <form id="messageForm" method="POST" action="">
             {% csrf_token %}
             <tr>
-              <div class="md-form mb-4">
+              <div class="md-form ">
                 <i class="fas fa-user prefix grey-text"></i>
-                <label class="mb-2">comment or idk</label>
+                <label class="mb-2">Write your comment</label>
                 {{ form }}
               </div>
             </tr>
@@ -107,19 +107,12 @@
         
         <!-- button submit (on progress) -->
         <tr colspan="2">
-          <button class="btn" onclick="">
+          <button class="btn d-grid gap-2 col-2 mx-auto" onclick="">
             Submit
           </button>
         </tr>
-
       </label>
     </label>
-    <form action="" method="post">
-      {% csrf_token %}
-      {{ form }}
-      <input type="submit" value="Submit">
-    </form>
-
     {% endblock content %}
   </body>
 </html>
