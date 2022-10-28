@@ -7,6 +7,7 @@
     <head>
         {% block meta %}
         <title>Deposit Sampah</title>
+        <link rel="stylesheet" href="{% static 'css/deposit.css' %}">
         {% endblock meta %}
     </head>
 
@@ -18,71 +19,81 @@
             $(document).ready(() => setup());
         </script>
 
-        <!-- Page Header -->
         <br>
-        {% if is_logged_in %}
-        <div>
-            <span> Welcome back {{ username }}! You have </span>
-            <b><span class="point-count"></span></b>
-            <span> points.</span>
-        </div>
-        {% endif %}
-        <div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        </div>
-        <br>
+        <div class="main-body">
+            <!-- Upper Page / Header -->
+            <div class="centered font-light">
+                {% if is_logged_in %}
+                <div class="text-3xl font-semibold leading-relaxed text-lg">
+                    <span>Welcome back {{ username }}! You have </span>
+                    <b><span class="point-count"></span></b>
+                    <span> points.</span>
+                </div>
+                {% endif %} <br>
 
-        <!-- The button to open modal -->
-        {% if is_logged_in %}
-            <label for="form-modal" class="btn modal-button">Make Deposit</label>
-        {% else %}
-            <a href="{% url 'banksampah:login' %}"><button class="btn">Login to Make Deposit</button></a>
-        {% endif %}
+                <div class="centered" style="width:50%">
+                    <p> Once logged in, you can exchange your waste for points that can later be redeemed
+                        for various prizes. You can also compete for the top spot on the point leaderboard!</p>
+                    <!-- <p>Setelah login, anda bisa menukarkan sampah untuk poin yang bisa di-<i>redeem</i> -->
+                    <!-- untuk berbagai macam hadiah. Anda juga bisa berlomba untuk posisi teratas di leaderboard poin.</p> -->
+                </div>
+            </div>
+            <br>
 
+            <!-- Modal Button -->
+            <div class="centered">
+            {% if is_logged_in %}
+                <label for="form-modal">
+                    <a type="button" class="btn focus:outline-none focus:ring-4 focus:bg-accent-focus font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Make Deposit</a>
+                </label>
+            {% else %}
+                <a href="{% url 'banksampah:login' %}"><label class="btn">Login to Make Deposit</label></a>
+            {% endif %}
+            </div>
 
-        <!-- Put this part before </body> tag -->
-        <input type="checkbox" id="form-modal" class="modal-toggle" />
-        <label class="modal" for="form-modal">
-            <label class="modal-box bg-white">
-                <label for="form-modal" class="btn btn-sm btn-circle absolute right-2 top-2 text-black bg-white">✕</label>
-                <!-- New Deposit Form -->
-                <table>
-                    <form id="depositForm" method="POST" action="">
-                    {% csrf_token %}
+            <!-- Form Modal -->
+            <input type="checkbox" id="form-modal" class="modal-toggle" />
+            <label class="modal" for="form-modal">
+                <label class="modal-box bg-white">
+                    <label for="form-modal" class="btn btn-sm btn-circle absolute right-2 top-2 text-black bg-white">✕</label>
+                    <!-- New Deposit Form -->
+                    <table class="table">
+                        <form id="depositForm" method="POST" action="">
+                            {% csrf_token %}
+                            {{ deposit_form.as_table }}
+                        </form>
                         <tr>
-                            <th>Field Name</th>
-                            <th>Field</th>
+                            <td colspan="2" class="centered"><label for="form-modal" class="btn btn-accent rounded-full" onclick="submitDeposit(depositForm)">Submit</label></td>
                         </tr>
-                        {{ form.as_table }}
-                    </form>
-                </table>
-                <tr colspan="2"><button class="btn" onclick="submitDeposit(depositForm)">Submit</button></tr>
+                    </table>
+                </label>
             </label>
-        </label>
 
-        <!-- Recent Deposit History (asynchronously loaded)-->
-        {% if is_logged_in %}
-            <p> {{ username }}'s Recent Deposits </p>
-            <table>
-                <tr>
-                    <th>Deposit Date</th>
-                    <th>Waste Type</th>
-                    <th>Mass(KG)</th>
-                    <th>Description</th>
-                </tr>
-                <tbody id="history-table"></tbody>
+            <!-- Recent Deposit History (async)-->
+            <table class="table"> 
+            <thead><th colspan="4" class="text-lg">Your Recent Deposits</th></thead>
+                {% if is_logged_in %}
+                    <thead class="bg-gray-100">
+                        <th>Deposit Date</th>
+                        <th>Waste Type</th>
+                        <th>Mass(KG)</th>
+                        <th>Description</th>
+                    </thead>
+                    <tbody id="history-table"></tbody>
+                {% else %}
+                    <tr><td class="centered"> Login to see your recent deposits! </td></tr>
+                {% endif %}
             </table>
-        {% else %}
-            <p> Login to see your recent deposits! </p>
-        {% endif %}
-        <br>
+            <br>
 
-        <!-- Message info / alert (asynchronously loaded) -->
-        {% if messages %}
-            {% for message in messages %}
-                <h1>{{message}}</h1>
-            {% endfor %}
-        {% endif %}
+            <!-- Message info / alert (async) -->
+            {% if messages %}
+                {% for message in messages %}
+                    <h1>{{message}}</h1>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
 
         {% endblock content %}
     </body>
