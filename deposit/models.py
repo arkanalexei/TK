@@ -3,7 +3,6 @@ from django.conf import settings
 from django.utils import timezone
 
 # Create your models here.
-# TODO: migrate
 
 class WasteDeposit(models.Model):
     CHOICES = (
