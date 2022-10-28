@@ -46,18 +46,20 @@ def deposit_sampah(request):
         points = "no"
         
     is_logged_in = request.session['is_logged_in']
-    context = { 'form': DepositForm, 
+    context = { 'deposit_form': DepositForm(auto_id=False), 
                 'username': username,
                 'is_logged_in' : is_logged_in,
                 'points': points}
-    return render(request, "deposit.html", context = context)
+    return render(request, "deposit.html", context=context)
 
     
 @require_http_methods(["POST"])
 def submit_form(request):
-    # if user is logged in, allow them to submit new deposit
+    # --- if user is logged in, allow them to submit new deposit ---
     if request.method == "POST":
         form = Form(request.POST)
+        
+        # --- session & form validation ---
         if request.session['is_logged_in'] and form.is_valid(): # validation
             # Save form data as new WasteDeposit object
             desc, type, mass = form.data['description'], form.data['type'], form.data['mass']
