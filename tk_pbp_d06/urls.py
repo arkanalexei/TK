@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('banksampah.urls')),
     path('leaderboard/', include('leaderboard.urls')),
     path('deposit/', include('deposit.urls')),
+    path('about/', include('about.urls')),
 ]
