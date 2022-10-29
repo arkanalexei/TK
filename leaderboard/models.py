@@ -13,6 +13,7 @@ class Achiever(models.Model):
         null=True,
         blank=True  
     )
+    name = models.CharField(max_length=255, null=True, blank=True)
     points = models.IntegerField(default=0)
 
 
