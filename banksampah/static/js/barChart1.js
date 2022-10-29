@@ -44,11 +44,11 @@ function barChart() {
           plugins: {
             legend: {
               display: true,
-              position: 'top',
+              position: 'bottom',
             },
             title: {
               display: true,
-              text: 'Projected waste generation, by rXegion (millions of tonnes/year)',
+              text: 'Projected waste generation, by region (millions of tonnes/year)',
               align: 'end',
               font: {
                 weight: 'bold',
@@ -60,7 +60,7 @@ function barChart() {
         },
       };
 
-    var chartBar = new Chart(document.getElementById("whyBar"), config);
+    var chartBar = new Chart(document.getElementById("whyBar1"), config);
  
 }
 
