@@ -36,21 +36,20 @@ def deposit_sampah(request):
             achiever.name = request.user.username
             achiever.points = 0
             achiever.save()
+            
         username = request.COOKIES['username']
         request.session['is_logged_in'] = True
-        points = achiever.points
     
     # ------- Limit page display if not logged in -------
     else:
         username = "None"
         request.session['is_logged_in'] = False
-        points = "no"
         
     is_logged_in = request.session['is_logged_in']
     context = { 'deposit_form': DepositForm(auto_id=False), 
                 'username': username,
-                'is_logged_in' : is_logged_in,
-                'points': points}
+                'is_logged_in' : is_logged_in
+                }
     return render(request, "deposit.html", context=context)
 
     
@@ -83,3 +82,18 @@ def submit_form(request):
             
         else: # if user is not logged in
             return redirect('banksampah:login')
+        
+def show_deposit_by_id(request, id):
+    data = WasteDeposit.objects.filter(user=request.user, pk=id)
+    if data:
+        data = data.get()
+        is_data_exist = True
+    else:
+        data = "ERROR"
+        is_data_exist = False
+        
+    context = {
+        'is_display': request.session['is_logged_in'] and is_data_exist,
+        'data': data,
+    }
+    return render(request, "single_deposit.html", context=context)

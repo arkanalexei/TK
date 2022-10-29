@@ -19,6 +19,6 @@ class WasteDeposit(models.Model):
     )
     mass = models.FloatField()
     description = models.TextField()
-    date_time = models.DateField(default=timezone.now)
+    date_time = models.DateTimeField(default=timezone.now)
     type = models.CharField(max_length=32, choices=CHOICES, default=CHOICES[0])
 
