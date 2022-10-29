@@ -32,7 +32,7 @@ function pieChart() {
         },
     };
 
-    var chartBar = new Chart(document.getElementById("chartPie"), configPie);
+    var chartBar = new Chart(document.getElementById("pieChart3"), configPie);
  
 }
                     

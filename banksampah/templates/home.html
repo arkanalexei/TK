@@ -59,7 +59,7 @@
                 </div>
 
                 <div id="chart1">
-                    <canvas width="500" height="500" class="p-10" id="whyBar" style="margin: 0 auto;"></canvas>
+                    <canvas width="725" height="725" class="p-10" id="whyBar" style="margin: 0 auto;"></canvas>
                     <script type="text/javascript" src="{% static 'js/barChart.js' %}"></script>
 
                 </div>
@@ -164,9 +164,11 @@
                 <div id="credits">
                     <span class="font-bold">
                         <a>This article was shamelessly stolen from </a>
-                        <a class="link link-success no-underline" href="https://datatopics.worldbank.org/what-a-waste/trends_in_solid_waste_management.html" target="_blank">The World Bank</a>
+                        <a class="link link-success no-underline"
+                            href="https://datatopics.worldbank.org/what-a-waste/trends_in_solid_waste_management.html"
+                            target="_blank">The World Bank</a>
                     </span>
-                    
+
                 </div>
 
             </div>
@@ -183,39 +185,40 @@
             <div class="grid grid-cols-3 gap-4 text-center">
                 <div class="">
                     <h4 class="text-xl font-bold">Plastic</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
-                        convallis arcu, vitae
-                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
-                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
-                        Duis quis justo non ex rhoncus tincidunt.</p>
+                    <p class="text-justify">
+                        Plastic waste, or plastic pollution, is ‘the accumulation of plastic objects (e.g.: plastic
+                        bottles and much more) in the Earth’s environment that adversely affects wildlife, wildlife
+                        habitat, and humans.’ It also refers to the significant amount of plastic that isn’t recycled
+                        and ends up in landfill or, in the developing world, thrown into unregulated dump sites.
+                    </p>
                 </div>
                 <div class="row-span-2">
                     <img class="mx-auto" src="{% static 'images/maskot2.png' %}" width="300" height="300">
                 </div>
                 <div class="">
                     <h4 class="text-xl font-bold">Glass</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
-                        convallis arcu, vitae
-                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
-                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
-                        Duis quis justo non ex rhoncus tincidunt.</p>
+                    <p class="text-justify">Glass is found in municipal solid waste (MSW), primarily in the form of
+                        containers such as beer and soft drink bottles; wine and liquor bottles; and bottles and jars
+                        for food, cosmetics and other products. Although most of the data is on glass containers, this
+                        analysis also considers glass materials in durable goods like furniture, appliances and consumer
+                        electronics.</p>
                 </div>
 
                 <div class="">
                     <h4 class="text-xl font-bold">Paper</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
-                        convallis arcu, vitae
-                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
-                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
-                        Duis quis justo non ex rhoncus tincidunt.</p>
+                    <p class="text-justify">Paper Waste is a severe problem in many industries and offices. Because of
+                        printing mistakes, junk mails, billings, and packaging, the paper may comprise up to 70% of a
+                        company’s total waste. An average office employee would be using about 10,000 sheets of paper in
+                        a year. In addition to paper used for printing, companies also consume other paper products,
+                        such as cardboard, envelopes, and wrappers, to name a few.</p>
                 </div>
                 <div class="">
                     <h4 class="text-xl font-bold">Organic</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
-                        convallis arcu, vitae
-                        accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
-                        enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
-                        Duis quis justo non ex rhoncus tincidunt.</p>
+                    <p class="text-justify">Organic waste, also known as biodegradable waste, is produced mainly from
+                        living organisms, either plant or animal. Examples include food waste, human waste, sewage,
+                        paper waste, manure, green waste, biodegradable plastic, and slaughterhouse waste. These
+                        substances are biodegradable but may contribute toward the production of greenhouse gas
+                        (methane), which is more potent than carbon dioxide in influencing global temperatures.</p>
                 </div>
 
             </div>
@@ -269,7 +272,7 @@
             {% if total_mass != 0 %}
             <div class="">
 
-                <canvas class="p-10" id="chartPie" style="margin: 0 auto;"></canvas>
+                <canvas width="500" height="500" class="p-10" id="pieChart3" style="margin: 0 auto;"></canvas>
 
                 <!-- Variables -->
                 <div id="mass_plastik" style="display: none;">{{mass_plastik}}</div>
@@ -278,7 +281,7 @@
                 <div id="mass_organik" style="display: none;">{{mass_organik}}</div>
 
                 <!-- Chart pie -->
-                <script type="text/javascript" src="{% static 'js/statPieChart.js' %}"></script>
+                <script type="text/javascript" src="{% static 'js/pieChart3.js' %}"></script>
             </div>
 
             {% endif %}

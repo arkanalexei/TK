@@ -15,6 +15,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{% static 'js/jquery.serializejson.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+          width: 10px;
+      }
+        
+      /* Track */
+      ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+      }
+        
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+          background: #888;
+      }
+        
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+          background: #555;
+      }
+    </style>
     
     {% block meta %}
     {% endblock meta %}
@@ -32,17 +54,6 @@
             <li><a href="{% url 'banksampah:news' %}">News</a></li>
             <li><a href="{% url 'leaderboard:leaderboard' %}">Leaderboard</a></li>
             
-            <li tabindex="0">
-              <a>
-                Item 2
-                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-              </a>
-              <ul class="p-2 bg-success-content">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </li>
-            <li><a>Item 3</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'banksampah:logout' %}">Logout</a></li>
             {% else %}
@@ -65,7 +76,7 @@
           <p class="font-bold">
             Scrap.py <br>Cleaning the environment, one scrap at a time
           </p> 
-          <p>Copyright © 2022 - All rights reserved by PBP D-06</p>
+          <p>Copyright © 2022 - All Rights Reserved by PBP D-06</p>
         </div> 
         <div>
           <div class="grid grid-flow-col gap-4">

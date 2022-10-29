@@ -54,8 +54,6 @@
         container.innerHTML = "";
 
         $.get("{% url 'banksampah:news_json' %}", function (data) {
-            console.log(2)
-            console.log(data)
             $.each(data, function (i, value) {
                 var card = document.createElement("div");
                 card.classList.add("card", "w-96", "shadow-xl", "card-bordered", "border-success", "card-compact", "lg:card-side")
@@ -132,16 +130,10 @@
 
         getNews();
 
-        console.log("create news")
         $("#createNews").submit(function (e) {
             e.preventDefault();
-            console.log("submit")
             var actionurl = e.currentTarget;
             var formJSON = JSON.stringify($("#createNews").serializeJSON());
-
-            console.log("e", e)
-            console.log("json", formJSON)
-            console.log("actionurl", actionurl)
 
             $.ajax({
                 type: "POST",
@@ -157,14 +149,12 @@
                         this.reset();
                     });
 
-                    console.log("success")
                     getNews();
 
                     $('#my-modal-5').click();
                 },
 
                 error: function(xhr, resp, text) {
-                    console.log("ada error")
                     console.log("xhr", xhr)
                     console.log("resp", resp)
                     console.log("text", text)
