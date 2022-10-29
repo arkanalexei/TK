@@ -46,33 +46,15 @@ def news(request):
 
 
 def news_add(request):
-    form = NewsForm()
-
     if request.method == "POST":
-        form = NewsForm(request.POST)
-        data = request.POST['data']
-        data2 = ast.literal_eval(data)
+        data = json.loads(request.POST['data'])
 
-        new_news = News()
-        new_news.user = request.user
-        new_news.date = timezone.now().strftime("%Y-%m-%d")
-        new_news.description = data2['description']
-        new_news.title = data2['title']
+        new_news = News(title=data["title"], description=data["description"], user=request.user)
         new_news.save()
 
-        return HttpResponseRedirect(reverse("banksampah:news"))
-    else:
-        return redirect('banksampah:news')
+        return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
 
-    # if request.method == "POST":
-    #     data = json.loads(request.POST['data'])
-
-    #     new_news = News(title=data["title"], description=data["description"], user=request.user)
-    #     new_news.save()
-
-    #     return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
-
-    # return HttpResponse()
+    return HttpResponse()
 
 @csrf_exempt
 def news_delete(request, news_id):
@@ -98,7 +80,7 @@ def home(request):
         'mass_kaca': mass[1],
         'mass_kertas': mass[2],
         'mass_organik': mass[3],
-        'total_mass': sum(mass) - mass[4],
+        'total_mass': mass[0]+mass[1]+mass[2]+mass[3],
         'net_footprint':mass[4]
     }
 

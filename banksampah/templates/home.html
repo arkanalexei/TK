@@ -22,7 +22,8 @@
                 <a>Scrap.py</a>
             </span>
             <p class="mb-3"></p>
-            <p id="scrappy" class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the amount of
+            <p id="scrappy" class="mb-3 text-lg text-justify">We are a non-profit organization that aims to reduce the
+                amount of
                 waste by recycling and managing waste properly. We work with volunteers to process your waste for a
                 brighter future.</p>
 
@@ -40,15 +41,150 @@
 
 
 <!-- grid of 1 column divs -->
-<div class="grid grid-cols-1 gap-2 bg-success">
+<div class="grid grid-cols-1 gap-2 bg-success-content">
+
     <div class="card">
+        <div class="card-body">
+            <h2 class="card-title text-6xl font-bold">Background</h2>
+
+            <div class="grid grid-col-2 gap-4">
+                <div id="opening" class="col-span-2">
+                    <p class="text-justify">
+                        The world generates 2.01 billion tonnes of municipal solid waste annually, with at least 33
+                        percent of that—extremely conservatively—not managed in an environmentally safe manner.
+                        Worldwide, waste generated per person per day averages 0.74 kilogram but ranges widely, from
+                        0.11 to 4.54 kilograms. Though they only account for 16 percent of the world’s population,
+                        high-income countries generate about 34 percent, or 683 million tonnes, of the world’s waste.
+                    </p>
+                </div>
+
+                <div id="chart1">
+                    <canvas width="500" height="500" class="p-10" id="whyBar" style="margin: 0 auto;"></canvas>
+                    <script type="text/javascript" src="{% static 'js/barChart.js' %}"></script>
+
+                </div>
+
+                <div id="chart2">
+                    <canvas width="500" height="500" class="p-10" id="horizontalChart" style="margin: 0 auto;"></canvas>
+                    <script type="text/javascript" src="{% static 'js/horizontalChart.js' %}"></script>
+
+                </div>
+
+                <div>
+                    <p class="text-justify">
+                        Overall, there is a positive correlation between waste generation and income level. Daily per
+                        capita waste generation in high-income countries is projected to increase by 19 percent by 2050,
+                        compared to low- and middle-income countries where it is expected to increase by approximately
+                        40% or more. Waste generation initially decreases at the lowest income levels and then increases
+                        at a faster rate for incremental income changes at low income levels than at high income levels.
+                        The total quantity of waste generated in low-income countries is expected to increase by more
+                        than three times by 2050.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-justify">
+                        Waste collection is a critical step in managing waste, yet rates vary largely by income levels,
+                        with upper-middle- and high-income countries providing nearly universal waste collection.
+                        Low-income countries collect about 48 percent of waste in cities, but this proportion drops
+                        drastically to 26 percent outside of urban areas. Across regions, Sub-Saharan Africa collects
+                        about 44 percent of waste while Europe and Central Asia and North America collect at least 90
+                        percent of waste.
+                    </p>
+                </div>
+
+
+                <div id="chart3">
+                    <canvas width="500" height="500" class="p-10" id="pieChart1" style="margin: 0 auto;"></canvas>
+                    <script type="text/javascript" src="{% static 'js/pieChart1.js' %}"></script>
+                </div>
+
+                <div id="chart4">
+                    <canvas width="500" height="500" class="p-10" id="pieChart2" style="margin: 0 auto;"></canvas>
+                    <script type="text/javascript" src="{% static 'js/pieChart2.js' %}"></script>
+                </div>
+
+                <div>
+                    <p class="text-justify">
+                        Waste composition differs across income levels, reflecting varied patterns of consumption.
+                        High-income countries generate relatively less food and green waste, at 32 percent of total
+                        waste, and generate more dry waste that could be recycled, including plastic, paper, cardboard,
+                        metal, and glass, which account for 51 percent of waste. Middle- and low-income countries
+                        generate 53 percent and 57 percent food and green waste, respectively, with the fraction of
+                        organic waste increasing as economic development levels decrease. In low-income countries,
+                        materials that could be recycled account for only 20 percent of the waste stream. Across
+                        regions, there is not much variety within waste streams beyond those aligned with income. All
+                        regions generate about 50 percent or more organic waste, on average, except for Europe and
+                        Central Asia and North America, which generate higher portions of dry waste.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-justify">
+                        Globally, most waste is currently dumped or disposed of in some form of a landfill. Some 37
+                        percent of waste is disposed of in some form of a landfill, 8 percent of which is disposed of in
+                        sanitary landfills with landfill gas collection systems. Open dumping accounts for about 31
+                        percent of waste, 19 percent is recovered through recycling and composting, and 11 percent is
+                        incinerated for final disposal. Adequate waste disposal or treatment, such as controlled
+                        landfills or more stringently operated facilities, is almost exclusively the domain of high- and
+                        upper-middle-income countries.
+                    </p>
+                    <br>
+                    <p class="text-justify">
+                        This rate decreases in high-income countries to 39 percent, with diversion of 36 percent of
+                        waste to recycling and composting and 22 percent to incineration. Incineration is used primarily
+                        in high-capacity, high-income, and land-constrained countries.
+                    </p>
+                </div>
+
+                <div id="ending" class="col-span-2">
+                    <p class="text-justify">
+                        Based on the volume of waste generated, its composition, and how it is managed, it is estimated
+                        that 1.6 billion tonnes of carbon dioxide equivalent greenhouse gas emissions were generated
+                        from solid waste treatment and disposal in 2016, or 5 percent of global emissions. Solid
+                        waste–related emissions are anticipated to increase to 2.38 billion tonnes of CO2-equivalent per
+                        year by 2050 if no improvements are made in the sector. In most countries, solid waste
+                        management operations are typically a local responsibility, and nearly 70 percent of countries
+                        have established institutions with responsibility for policy development and regulatory
+                        oversight in the waste sector. About two-thirds of countries have created targeted legislation
+                        and regulations for solid waste management, though enforcement varies drastically.
+
+                        Financing solid waste management systems is a significant challenge, even more so for ongoing
+                        operational costs than for capital investments, and operational costs need to be taken into
+                        account upfront. In high-income countries, operating costs for integrated waste management,
+                        including col-lection, transport, treatment, and disposal, generally exceed $100 per tonne.
+                        Lower-income countries spend less on waste operations in absolute terms, with costs of about $35
+                        per tonne and sometimes higher, but these countries experience much more difficulty in
+                        recovering costs. User fees range from an average of $35 per year in low-income countries to
+                        $170 per year in high-income countries, with full or nearly full cost recovery being largely
+                        limited to high-income countries.
+                    </p>
+                </div>
+
+                <div id="credits">
+                    <span class="font-bold">
+                        <a>This article was shamelessly stolen from </a>
+                        <a class="link link-success no-underline" href="https://datatopics.worldbank.org/what-a-waste/trends_in_solid_waste_management.html" target="_blank">The World Bank</a>
+                    </span>
+                    
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="card bg-success text-primary-content">
         <div class="card-body">
             <h2 class="card-title text-6xl font-bold">Guide</h2>
 
             <div class="grid grid-cols-3 gap-4 text-center">
                 <div class="">
                     <h4 class="text-xl font-bold">Plastic</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
+                        convallis arcu, vitae
                         accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
                         enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
                         Duis quis justo non ex rhoncus tincidunt.</p>
@@ -57,23 +193,26 @@
                     <img class="mx-auto" src="{% static 'images/maskot2.png' %}" width="300" height="300">
                 </div>
                 <div class="">
-                    <h4 class="text-xl font-bold">Kaca</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                    <h4 class="text-xl font-bold">Glass</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
+                        convallis arcu, vitae
                         accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
                         enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
                         Duis quis justo non ex rhoncus tincidunt.</p>
                 </div>
-                
+
                 <div class="">
-                    <h4 class="text-xl font-bold">Kertas</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                    <h4 class="text-xl font-bold">Paper</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
+                        convallis arcu, vitae
                         accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
                         enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
                         Duis quis justo non ex rhoncus tincidunt.</p>
                 </div>
                 <div class="">
-                    <h4 class="text-xl font-bold">Organik</h4>
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque convallis arcu, vitae
+                    <h4 class="text-xl font-bold">Organic</h4>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque
+                        convallis arcu, vitae
                         accumsan est facilisis id. Suspendisse condimentum felis a nibh dignissim tempus ac volutpat
                         enim. Donec malesuada leo in ornare ornare. Mauris in dolor in ante commodo rutrum et a lacus.
                         Duis quis justo non ex rhoncus tincidunt.</p>
@@ -94,14 +233,15 @@
                 <a>kgs worth of trash!</a>
                 <a>With net GHG emissions from recycling of</a>
                 {% if net_footprint > 0 %}
-                    <a class="text-error font-bold">{{net_footprint}}</a>
+                <a class="text-error font-bold">{{net_footprint}}</a>
                 {% else %}
-                    <a class="text-lime-600  font-bold">{{net_footprint}}</a>
+                <a class="text-lime-600  font-bold">{{net_footprint}}</a>
                 {% endif %}
                 <a> Kgs of CO2-eq/kg of mixed recyclables. Here's the breakdown:</a>
             </span>
 
-            <div id="statistics" class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content">
+            <div id="statistics"
+                class="stats stats-horizontal lg:stats-horizontal shadow bg-success text-primary-content">
 
                 <div class="stat place-items-center">
                     <div class="stat-title ">Plastik</div>
@@ -123,9 +263,10 @@
                     <div class="stat-value">{{mass_organik}} Kg</div>
                 </div>
 
-                
+
 
             </div>
+            {% if total_mass != 0 %}
             <div class="">
 
                 <canvas class="p-10" id="chartPie" style="margin: 0 auto;"></canvas>
@@ -136,49 +277,11 @@
                 <div id="mass_kertas" style="display: none;">{{mass_kertas}}</div>
                 <div id="mass_organik" style="display: none;">{{mass_organik}}</div>
 
-
-                <!-- Required chart.js -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
                 <!-- Chart pie -->
-                <script>
-                    var plastik = document.getElementById("mass_plastik").innerHTML;
-                    var kaca = document.getElementById("mass_kaca").innerHTML;
-                    var kertas = document.getElementById("mass_kertas").innerHTML;
-                    var organik = document.getElementById("mass_organik").innerHTML;
-
-                    const dataPie = {
-                        labels: ["Plastik", "Kaca", "Kertas", "Organik"],
-                        datasets: [
-                            {
-                                label: "My First Dataset",
-                                data: [plastik, kaca, kertas, organik],
-                                backgroundColor: [
-                                    "#CCE2CB",
-                                    "#FFE1E9",
-                                    "#FDD7C2",
-                                    "#F6EAC2",
-                                ],
-                                hoverOffset: 4,
-                            },
-                        ],
-                    };
-
-                    const configPie = {
-                        type: "pie",
-                        data: dataPie,
-                        options: {
-                            plugins: {
-                                legend: false,
-                                tooltip: true,
-                            },
-                        },
-                    };
-
-                    var chartBar = new Chart(document.getElementById("chartPie"), configPie);
-                </script>
+                <script type="text/javascript" src="{% static 'js/statPieChart.js' %}"></script>
             </div>
 
+            {% endif %}
 
             {% else %}
             <span class="text-xl font-medium">

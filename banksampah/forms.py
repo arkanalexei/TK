@@ -1,8 +1,7 @@
-from django.forms import Form, ModelForm
-from deposit.models import WasteDeposit
+from django import forms
 from banksampah.models import News
 
-class NewsForm(ModelForm):
+class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = ['title', 'description']

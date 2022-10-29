@@ -1,56 +1,99 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
 <title>Registrasi</title>
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
 {% endblock meta %}
 
 
 {% block content %}
-    <form method="POST" action="" class="mt-5">
-        {% csrf_token %}
-        <div class="grid grid-cols-1 gap-4 place-items-center">
-            <input type="text" name="username" class="input bg-primary-content input-bordered input-accent w-full max-w-xs " placeholder="Your Username" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" />
-            <input type="password" name="password1" class="input bg-primary-content input-bordered input-accent w-full max-w-xs" placeholder="Your Password" autocomplete="new-password" required="" id="id_password1">
-            <input type="password" name="password2" class="input bg-primary-content input-bordered input-accent w-full max-w-xs" placeholder="Your Password Again" autocomplete="new-password" required="" id="id_password2">
-            <input type="submit" name="submit" value="Submit" class="btn btn-active btn-accent" />
-            <p class="mb-3 text-lg">Sudah punya akun? <a href="{% url 'banksampah:login' %}" class="link link-accent no-underline font-bold">Login</a></p>
-        </div>
+<form method="POST" action="" class="mt-5 bg-white">
+    {% csrf_token %}
+    <div class="grid grid-cols-1 gap-4 place-items-center">
 
-        <div class="flex place-content-center">
-            <ul>
-                {% if form.username.errors %}
-                    {% for error in form.username.errors %}
-                        <div class="alert alert-warning shadow-lg">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                              <span>{{error}}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                {% if form.password1.errors %}
-                    {% for error in form.password1.errors %}
-                        <div class="alert alert-warning shadow-lg">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                              <span>{{error}}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                {% if form.password2.errors %}
-                    {% for error in form.password2.errors %}
-                        <div class="alert alert-warning shadow-lg">
-                            <div>
-                              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                              <span>{{error}}</span>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </ul>
-            
-        </div>
-    </form>
+
+        {{ form.as_table }}
+        <input type="submit" name="submit" value="Submit" class="btn btn-active btn-accent"/>
+
+        <p class="mb-3 text-lg">Sudah punya akun? <a href="{% url 'banksampah:login' %}"
+                class="link link-accent no-underline font-bold">Login</a></p>
+    </div>
+
+    <div class="flex place-content-center">
+        <ul>
+            {% if form.username.errors %}
+            {% for error in form.username.errors %}
+            <div class="alert alert-warning shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>{{error}}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% if form.password1.errors %}
+            {% for error in form.password1.errors %}
+            <div class="alert alert-warning shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>{{error}}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% if form.password2.errors %}
+            {% for error in form.password2.errors %}
+            <div class="alert alert-warning shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span>{{error}}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </ul>
+
+    </div>
+</form>
+
+
+    
+
+
+<script type="text/javascript">
+     $(document).ready(function () {
+
+        var username = document.getElementById("id_username");
+        username.placeholder = "Your Username";
+        username.classList.add("input", "bg-primary-content", "input-bordered", "input-accent", "w-full", "max-w-xs")
+
+        var password1 = document.getElementById("id_password1");
+        password1.placeholder = "Your Password";
+        password1.classList.add("input", "bg-primary-content", "input-bordered", "input-accent", "w-full", "max-w-xs")
+
+        var password2 = document.getElementById("id_password2");
+        password2.placeholder = "Your Password Again";
+        password2.classList.add("input", "bg-primary-content", "input-bordered", "input-accent", "w-full", "max-w-xs")
+
+     });
+
+</script>
+
+
 
 {% endblock content %}
+

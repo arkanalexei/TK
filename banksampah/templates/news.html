@@ -27,7 +27,7 @@
         <div class="modal-box w-11/12 max-w-5xl bg-white">
             <!-- <input type="text" name="title" placeholder="News Title" class="input input-bordered w-full bg-white border-accent"/>
             <textarea name="description" class="textarea textarea-success w-full bg-white mt-2" placeholder="Article" style="height: 300px;"></textarea> -->
-            {{ form.as_table }}
+            {{ form.as_div }}
 
             <div class="modal-action">
                 <input name="submit" type="submit" value="Submit" class="btn btn-accent bg-success">
@@ -47,13 +47,10 @@
 {{ request.user.id|json_script:"user_id" }}
 
 <script text="text/javascript">
-    console.log("a")
-
     var container = document.createElement("div");
     container.classList.add("grid", "grid-cols-3", "gap-4", "place-items-center","mx-auto", "bg-white", "p-4");
 
     function getNews() {
-        console.log("b")
         container.innerHTML = "";
 
         $.get("{% url 'banksampah:news_json' %}", function (data) {

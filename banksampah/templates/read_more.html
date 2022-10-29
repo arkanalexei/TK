@@ -10,6 +10,14 @@
 
 {% block content %}
 
+<div class="text-sm breadcrumbs px-3">
+    <ul>
+        <li><a href="{% url 'banksampah:home' %}">Home</a></li>
+        <li><a href="{% url 'banksampah:news' %}">News</a></li>
+        <li>Article #{{news.pk}}</li>
+    </ul>
+</div>
+
 <div>
     <h1 id="newsHead" class="font-bold text-6xl text-center p-4">North Depok Morning Post</h1>
 </div>
