@@ -1,0 +1,17 @@
+.main-body {
+    margin: auto;
+    width: 75%;
+    border-width: 3px;
+    border-color: #00331F;
+    padding: 20px;
+}
+
+.centered {
+    margin: auto;
+    text-align: center;
+}
+
+form > * {
+    color:blue;
+    background-color: blue;
+}

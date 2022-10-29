@@ -33,6 +33,7 @@ def deposit_sampah(request):
         else: # if user has no points, create new Achiever object to store user's points
             achiever = Achiever()
             achiever.user = request.user
+            achiever.name = request.user.username
             achiever.points = 0
             achiever.save()
         username = request.COOKIES['username']
