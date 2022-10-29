@@ -1,3 +1,4 @@
+// Initial setup
 function setup() {
     $.ajaxSetup({ // set up CSRF token for all HTTP requests
         headers: {"X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()}
@@ -6,40 +7,44 @@ function setup() {
     updatePointCount();
 }
 
+// Show 5 of the most recent deposits under #history-table
 function updateHistoryTable() {
     $(`#history-table`).empty();    // empty table before appending html
     $.getJSON("json/", (data) => {  // retrieve user's data
         const len = data.length;
-        // append row of WasteDeposit data for 5 of the most recent deposits
         for (var i = len - 1; (i >= 0) && (len - i <= 5); i--) {
+            const date = new Date(data[i].fields.date_time);
+            // append row of WasteDeposit data
             $("#history-table").append(
                 `<tr>
-                <td>${data[i].fields.date_time}</td>
+                <td>${date.toDateString()}</td>
                 <td>${data[i].fields.type}</td>
                 <td>${data[i].fields.mass}</td>
-                <td>${data[i].fields.description}</td>
+                <td><a href="view/${data[i].pk}">View more</a></td>
                 </tr>`
             );
         }
     });
 }
 
+// Show user's point count in .point-count
 function updatePointCount() {
     $.getJSON(
-        "json/achiever/", (data) => {
+        "json/achiever", (data) => {
+            console.log(data[0].fields.points);
             $(`.point-count`).empty();
             $(`.point-count`).append(data[0].fields.points);
         }
     );
 }
 
+// Create an AJAX post request when deposit form is submitted
 function submitDeposit(form) {
-    // Create a POST http request to be handled by Django
     $.post(
         `submit/`, $(form).serialize(), () => {
             updateHistoryTable();
             updatePointCount();
-            $("#depositForm")[0].reset();   // reset form fields
+            $("#depositForm")[0].reset(); // reset form fields
         }
     );
 }

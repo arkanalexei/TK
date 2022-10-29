@@ -33,31 +33,33 @@ def deposit_sampah(request):
         else: # if user has no points, create new Achiever object to store user's points
             achiever = Achiever()
             achiever.user = request.user
+            achiever.name = request.user.username
             achiever.points = 0
             achiever.save()
+            
         username = request.COOKIES['username']
         request.session['is_logged_in'] = True
-        points = achiever.points
     
     # ------- Limit page display if not logged in -------
     else:
         username = "None"
         request.session['is_logged_in'] = False
-        points = "no"
         
     is_logged_in = request.session['is_logged_in']
-    context = { 'form': DepositForm, 
+    context = { 'deposit_form': DepositForm(auto_id=False), 
                 'username': username,
-                'is_logged_in' : is_logged_in,
-                'points': points}
-    return render(request, "deposit.html", context = context)
+                'is_logged_in' : is_logged_in
+                }
+    return render(request, "deposit.html", context=context)
 
     
 @require_http_methods(["POST"])
 def submit_form(request):
-    # if user is logged in, allow them to submit new deposit
+    # --- if user is logged in, allow them to submit new deposit ---
     if request.method == "POST":
         form = Form(request.POST)
+        
+        # --- session & form validation ---
         if request.session['is_logged_in'] and form.is_valid(): # validation
             # Save form data as new WasteDeposit object
             desc, type, mass = form.data['description'], form.data['type'], form.data['mass']
@@ -80,3 +82,18 @@ def submit_form(request):
             
         else: # if user is not logged in
             return redirect('banksampah:login')
+        
+def show_deposit_by_id(request, id):
+    data = WasteDeposit.objects.filter(user=request.user, pk=id)
+    if data:
+        data = data.get()
+        is_data_exist = True
+    else:
+        data = "ERROR"
+        is_data_exist = False
+        
+    context = {
+        'is_display': request.session['is_logged_in'] and is_data_exist,
+        'data': data,
+    }
+    return render(request, "single_deposit.html", context=context)

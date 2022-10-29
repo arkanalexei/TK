@@ -1,0 +1,16 @@
+.main-body {
+    margin: auto;
+    width: 75%;
+    border-width: 3px;
+    border-color: #00331F;
+    padding: 20px;
+}
+
+.centered {
+    margin: auto;
+    text-align: center;
+}
+
+li {
+    font-size: x-small !important;
+}
