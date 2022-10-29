@@ -11,7 +11,6 @@
     text-align: center;
 }
 
-form > * {
-    color:blue;
-    background-color: blue;
+li {
+    font-size: x-small !important;
 }
