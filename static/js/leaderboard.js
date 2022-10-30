@@ -36,7 +36,7 @@ function updateComments() {
     for (var i = 0; i < 10; i++) {
       $("#comment-section").append(
         `<div class="card m-3 rounded-1 p-2" >
-            <strong mb-2 fs-6>user ${data[i].fields.user} - ${data[i].fields.date_added}</strong>
+            <strong mb-2 fs-6>${data[i].fields.nama} - ${data[i].fields.date_added}</strong>
             <p>${data[i].fields.comment}</p>
           </div>`
       );

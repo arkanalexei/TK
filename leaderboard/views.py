@@ -42,6 +42,7 @@ def submit_form(request):
             new_comment = Comment()
             new_comment.comment = comment
             new_comment.user = request.user
+            new_comment.nama = request.user.username
             new_comment.date_added = dt.now()
             new_comment.save()
 

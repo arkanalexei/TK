@@ -25,6 +25,7 @@ class Comment(models.Model):
         blank=True,
         related_name='comments'  
     )
+    nama = models.CharField(max_length=255, null=True, blank=True)
     comment = models.TextField()
     date_added = models.DateField(auto_now_add=True)
 
