@@ -17,7 +17,7 @@
       $(document).ready(() => setup());
     </script>
 
-    <div class="card mb-4">
+    <div class="card mb-2">
       <p class="font-bold text-4xl text-center pt-4">Leaderboard</p>
       <div class="card-body">
 
@@ -58,23 +58,24 @@
       <div class="card-body">
 
         <!-- comments sections -->
-        <h2> Comments ....</h2>
+        <h2 class="fw-bold"> Comments </h2>
         {% if not user.is_authenticated %}
-          <p class="text-center">log in first to see the comment section</p>
+          <p class="text-center mt-5">Please log in first to see the comment section</p>
         {% else %}
           <div id="comment-section"></div>
         {% endif %}
 
         <br></br>
-
-        <!-- The button to open modal -->
+        <div class="mt-3">
         <p>
-          Please write your comments here, the comments will be displayed on the page
+          Write your comments here, the comments will be displayed on the page
         </p>
+        <!-- The button to open modal -->
         <div>
-          <label for="form-modal" class="mt-4 btn modal-button"
+          <label for="form-modal" class="mt-4 btn modal-button d-grid gap-2 col-4 mx-auto"
             >Send comment</label
           >
+        </div>
         </div>
       </div>
     </div>

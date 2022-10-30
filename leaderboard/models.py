@@ -28,5 +28,3 @@ class Comment(models.Model):
     comment = models.TextField()
     date_added = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return '%s - %s' % (self.username, self.comment)
