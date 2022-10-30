@@ -47,11 +47,6 @@
             </tr>
           </thead>
           <tbody class="text-center" id="leaderboard-table">
-            <!-- <tr>
-              <td>1</td>
-              <td>testtttttttttttttt</td>
-              <td>1961</td>
-            </tr> -->
           </tbody>
         </table>
 
@@ -67,13 +62,7 @@
         {% if not user.comments.all %}
           <p class="text-center">No comments yet</p>
         {% else %}
-          {% for comment in user.comments.all %}
-            <strong>
-              {{ comment.user.username }} -
-              {{ comment.date_added}}
-            </strong>
-            {{ comment.comment }}
-          {% endfor %}
+          <div id="comment-section"></div>
         {% endif %}
 
         <br></br>
@@ -116,7 +105,6 @@
         <!-- button submit (on progress) -->
         <tr colspan="2">
           <input id="comment_button" value="submit" type="submit" class="btn d-grid gap-2 col-2 mx-auto" onclick="submitComment(messageForm)">
-            Submit
           </input>
           <!-- <input type="submit" id="submitButton"  name="submitButton" value="Submit"> -->
         </tr>

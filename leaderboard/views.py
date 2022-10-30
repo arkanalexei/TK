@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from leaderboard.forms import CommentForm
 from django.views.decorators.http import require_http_methods
-from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from datetime import datetime as dt
@@ -14,14 +13,13 @@ from datetime import datetime as dt
 # Create your views here.
 
 @login_required(login_url='banksampah:login')
-def json_leaderboard(request):    
-    current_user = request.user
+def json_leaderboard(request): 
     data = Achiever.objects.all().order_by('-points')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 @login_required(login_url='banksampah:login')
 def json_feedback(request):    
-    data = Comment.objects.all()
+    data = Comment.objects.all().order_by('-pk')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_leaderboard(request):
@@ -55,4 +53,3 @@ def submit_form(request):
             return redirect('banksampah:login')
 
 # comment view ajax
-# def comment_view(request):
