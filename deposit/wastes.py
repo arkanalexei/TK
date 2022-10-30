@@ -1,4 +1,5 @@
-# Module to 
+# Helper module for waste type information (for all)
+# To import, use "from deposit.wastes import *"
 
 WASTES_DICT = {
     "PLASTIK"   : {'name': "Plastik", 'points': 50},
