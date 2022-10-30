@@ -36,7 +36,7 @@ def submit_form(request):
     # if user is logged in, allow them to submit new deposit
     if request.method == "POST":
         form = Form(request.POST)
-        if request.session['is_logged_in'] and form.is_valid(): # validation
+        if request.user.is_authenticated and form.is_valid(): # validation
             # Save form data as new WasteDeposit object
             comment = form.data['comment']
             new_comment = Comment()

@@ -59,8 +59,8 @@
 
         <!-- comments sections -->
         <h2> Comments ....</h2>
-        {% if not user.comments.all %}
-          <p class="text-center">No comments yet</p>
+        {% if not user.is_authenticated %}
+          <p class="text-center">log in first to see the comment section</p>
         {% else %}
           <div id="comment-section"></div>
         {% endif %}
