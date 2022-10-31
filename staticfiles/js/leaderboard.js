@@ -50,8 +50,16 @@ function submitComment(form) {
     `submit/`, $(form).serialize(), () => {
       updateComments();
       $("#messageForm").trigger("reset"); // reset form fields
-      $(".modal-toggle").hide(); // hide modal (the hide not working dk why)
+      $("#messageForm").hide(); // hide modal (the hide not working dk why)
     }
   )
+}
+
+function validation(form) {
+  var message = getElementById("textfield").value;
+  if ( message== ""){  
+    e.preventDefault();
+    alert("Fill in the text box to submit your comment");
+  }
 }
 
