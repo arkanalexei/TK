@@ -97,7 +97,9 @@
               <div class="md-form ">
                 <i class="fas fa-user prefix grey-text"></i>
                 <label class="mb-2">Write your comment</label>
-                {{ form.as_p }}
+                <div id="textfield">
+                  {{ form.as_p }}
+                </div>
               </div>
             </tr>
           </form>
@@ -105,7 +107,7 @@
         
         <!-- button submit (on progress) -->
         <tr colspan="2">
-          <input id="comment_button" data-bs-dismiss="form-modal" value="submit" type="submit" class="btn d-grid gap-2 col-2 mx-auto" onclick="submitComment(messageForm)">
+          <input id="comment_button" data-bs-dismiss="form-modal" value="submit" type="submit" class="btn d-grid gap-2 col-2 mx-auto" onclick="submitComment(messageForm); validation();" >
           </input>
           <!-- <input type="submit" id="submitButton"  name="submitButton" value="Submit"> -->
         </tr>

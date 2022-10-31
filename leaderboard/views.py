@@ -30,7 +30,6 @@ def show_leaderboard(request):
     }
     return render(request, "leaderboard.html", context)
 
-
 @require_http_methods(["POST"])
 def submit_form(request):
     # if user is logged in, allow them to submit new deposit
@@ -39,18 +38,20 @@ def submit_form(request):
         if request.user.is_authenticated and form.is_valid(): # validation
             # Save form data as new WasteDeposit object
             comment = form.data['comment']
-            new_comment = Comment()
-            new_comment.comment = comment
-            new_comment.user = request.user
-            new_comment.nama = request.user.username
-            new_comment.date_added = dt.now()
-            new_comment.save()
+            if comment != "":
+                new_comment = Comment()
+                new_comment.comment = comment
+                new_comment.user = request.user
+                new_comment.nama = request.user.username
+                new_comment.date_added = dt.now()
+                new_comment.save()
 
             
-            response = HttpResponseRedirect(reverse("leaderboard:leaderboard"))
-            return response
+                response = HttpResponseRedirect(reverse("leaderboard:leaderboard"))
+                return response
+            else:
+                return HttpResponse("Please fill in the comment field")
             
         else: # if user is not logged in
             return redirect('banksampah:login')
 
-# comment view ajax
