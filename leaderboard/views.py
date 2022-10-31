@@ -12,7 +12,7 @@ from datetime import datetime as dt
 
 # Create your views here.
 
-@login_required(login_url='banksampah:login')
+
 def json_leaderboard(request): 
     data = Achiever.objects.all().order_by('-points')
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
