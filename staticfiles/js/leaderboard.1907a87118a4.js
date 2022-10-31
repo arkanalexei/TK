@@ -1,3 +1,4 @@
+
 // TODO: setup
 function setup() {
   $.ajaxSetup({
@@ -15,7 +16,25 @@ function updateLeaderboard() {
     // retrieve user's data
     const len = data.length;
     // append row of achiever for top 10 achievers
-    for (var i = 0; i < len && i < 10; i++) {
+    for (var i = 0; i < len && i < 12; i++) {
+      $("#leaderboard-table").append(
+        `<tr>
+            <td>${i + 1}</td>
+            <td>${data[i].fields.name}</td>
+            <td>${data[i].fields.points}</td>
+          </tr>`
+      );
+    }
+  });
+}
+
+// showing top20 leaderboard
+function showTop20() {
+  $.getJSON("json/", (data) => {
+    // retrieve user's data
+    const len = data.length;
+    // append row of achiever for top 10 achievers
+    for (var i = 10; i < len && i < 20; i++) {
       $("#leaderboard-table").append(
         `<tr>
             <td>${i + 1}</td>
@@ -56,7 +75,8 @@ function submitComment(form) {
 }
 
 function validation(form) {
-  var message = getElementById("textfield").value;
+  alert("Your comment has been submitted!");
+  var message = document.getElementById("textfield").value;
   if ( message== ""){  
     e.preventDefault();
     alert("Fill in the text box to submit your comment");
