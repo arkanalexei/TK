@@ -58,19 +58,13 @@
                     </p>
                 </div>
 
-                <div id="chart1">
+                <div id="chart1" class="col-span-2">
                     <canvas width="500" height="500" class="p-10" id="whyBar1" style="margin: 0 auto;"></canvas>
                     <script type="text/javascript" src="{% static 'js/barChart1.js' %}"></script>
 
                 </div>
 
-                <div id="chart2">
-                    <canvas width="500" height="500" class="p-10" id="horizontalChart" style="margin: 0 auto;"></canvas>
-                    <script type="text/javascript" src="{% static 'js/horizontalChart.js' %}"></script>
-
-                </div>
-
-                <div>
+                <div class="col-span-2">
                     <p class="text-justify">
                         Overall, there is a positive correlation between waste generation and income level. Daily per
                         capita waste generation in high-income countries is projected to increase by 19 percent by 2050,
@@ -82,7 +76,15 @@
                     </p>
                 </div>
 
-                <div>
+                <div id="chart2" class="col-span-2">
+                    <canvas width="500" height="500" class="p-10" id="horizontalChart" style="margin: 0 auto;"></canvas>
+                    <script type="text/javascript" src="{% static 'js/horizontalChart.js' %}"></script>
+
+                </div>
+
+
+
+                <div class="col-span-2">
                     <p class="text-justify">
                         Waste collection is a critical step in managing waste, yet rates vary largely by income levels,
                         with upper-middle- and high-income countries providing nearly universal waste collection.
@@ -157,7 +159,8 @@
                         per tonne and sometimes higher, but these countries experience much more difficulty in
                         recovering costs. User fees range from an average of $35 per year in low-income countries to
                         $170 per year in high-income countries, with full or nearly full cost recovery being largely
-                        limited to high-income countries.
+                        limited to high-income countries. That's why we here at Scrap.py is here to change things for
+                        the better.
                     </p>
                 </div>
 
