@@ -78,10 +78,10 @@ def submit_form(request):
                 new_deposit.mass = mass
                 new_deposit.save()
             
-            # increment points to existing Achiever object
-            achiever = Achiever.objects.filter(user=request.user).get()
-            achiever.points += int(float(mass) * get_waste_points(type))
-            achiever.save()
+                # increment points to existing Achiever object
+                achiever = Achiever.objects.filter(user=request.user).get()
+                achiever.points += int(float(mass) * get_waste_points(type))
+                achiever.save()
             
             messages.add_message(request, messages.SUCCESS, "Deposit submitted successfully") # todo
             response = HttpResponseRedirect(reverse("deposit:deposit_sampah"))
