@@ -84,7 +84,7 @@ class HomeTest(TestCase):
 
         response = c.get('/register/')
         self.assertEqual(response.status_code, 200)
-
+    
     def test_logout(self):
         c = Client()
         c.login(**self.credentials)
