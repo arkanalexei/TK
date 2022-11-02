@@ -10,6 +10,7 @@
         {% endblock meta %}
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <body>
         {% block content %}
         <style type="text/css">
@@ -206,7 +207,7 @@
             <div class="hero-content text-center text-primary-content">
                 <div class="max-w-md">
                     <span class="text-4xl font-bold">
-                        <a>Send Your Feedbacks!</a>
+                        <a>Send Your Feedbacks Here</a>
                     </span>
                     <form action="" form method ="post">
                         {% csrf_token %}
@@ -232,6 +233,168 @@
                 </div>
             </div>
         </div>
+
+        {% if user.is_authenticated %}
+        <div>
+        <div class="hero min-h-fit" style="background-image: url();">
+            <div class="hero-overlay bg-opacity-160"></div>
+            <div class="hero-content text-center text-primary-content">
+                <div class="container px-5">
+                    <div class="row gx-3">
+                        <span class="text-3xl font-bold">
+                            <a>Your Feedback History</a>
+                        </span>
+                        <p>Organize your feedback history</p>
+                        <p class="mb-3"></p>
+   
+                    <div class="w-100 d-flex justify-content-center">
+                    
+                    <table class="table w-75">
+                        <thead>
+                        <tr>
+                            <th scope="col"><font color="#FFFF00">Timefield</font></th>
+                            <th scope="col"><font color="#FFFF00">Message</font></th>
+                            <th scope="col"><font color="#FFFF00">Ratings</font></th>
+                            <th scope="col"><font color="#FFFF00">Actions</font></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% if feedbacksAll %}
+                                {% for history in feedbacksAll %}
+                                    <tr>
+                                        <td><font color="#FFF">{{ history.created_at }}</font></td>
+                                        <td><font color="#FFF">{{ history.message}}</font></td>
+                                        <td><font color="#FFF">{{ history.ratings }}</font></td>
+                                        <td>
+                                            <button type="button" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-message={{ history.message }} data-ratings={{ history.ratings }} data-pk={{ history.pk }}>Edit</button>
+                                            <button type="button" pk={{ history.pk }} class="delete-feedback btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Message</label>
+                        <input type="textarea" class="form-control message" id="modal_message" value="" placeholder="Type message">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Ratings</label>
+                        <select name="ratings" class="form-control ratings" id="modal_ratings" value ="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" pk="" class="edit-feedback btn btn-primary">Save</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var exampleModal = document.getElementById('exampleModal')
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-* attributes
+                var message = button.getAttribute('data-message')
+                var ratings = button.getAttribute('data-ratings')
+                var pk = button.getAttribute('data-pk')
+
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                
+                // Get the modal's content.
+                var modalBodyMessage = exampleModal.querySelector('.modal-body .message')
+                var modalBodyRatings = exampleModal.querySelector('.modal-body .ratings')
+                var modalSaveButton = exampleModal.getElementsByClassName("edit-feedback")
+
+             
+                modalBodyMessage.value = message
+                modalBodyRatings.value = ratings
+                modalSaveButton.pk = pk
+            })
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            $(document).ready(function(){
+                $(".edit-feedback").click(function() {
+                    $.ajax({
+                        url: '{% url "about:edit_feedback" %}',
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken")
+                        },
+                        data: {
+                            "id": exampleModal.getElementsByClassName("edit-feedback").pk,
+                            "message": document.getElementById('modal_message').value,
+                            "ratings": document.getElementById('modal_ratings').value,
+                        },
+                        success: function(result){
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.error(err)
+                        }
+                    })
+                })
+
+                $(".delete-feedback").click(function(){
+                    $.ajax({
+    
+                        url: '{% url "about:delete_feedback" %}',
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken")
+                        },
+                        data: {
+                            "id": $(this).attr('pk')
+                        },
+                        success: function(result){
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.error(err)
+                        }
+                    });
+                });
+            });
+        </script>
+        </div>
+        {% endif %}
 
         {% endblock content %}
     </body>
