@@ -4,6 +4,7 @@ from about.forms import FeedbackForm
 from about.models import Feedback
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.http import JsonResponse
 from django.http import HttpResponse
