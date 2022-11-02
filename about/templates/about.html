@@ -13,10 +13,25 @@
     <body>
         {% block content %}
         <style type="text/css">
+            body {
+                background-image: url('{%static 'images/bg.jpg'%}');
+                background-size: 1500px 1000px;
+                opacity: 1;
+            }
             .box{
                 display: none;
             }
+            input[type=text] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 0.1rem solid white;
+                background-color: #191d24;
+                color: white;
+            }
         </style>
+        
 
         <div class="hero min-h-fit"
             style="background-image: url();">
@@ -195,14 +210,23 @@
                     </span>
                     <form action="" form method ="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                
-                        <button type="submit" class="btn btn-primary">Submit</button>  
-                        </form>
+                        <ul class="ratingscale" style="list-style-type:none;">
+                            <br> 
+                            <label>Your Name</label>
+                            <li input type="text" id="pengirim" class="pengirim">{{ form.pengirim }}</li>
+                            <br> 
+                            <label>Feedback Message</label>
+                            <li input type="text" id="message" class="message">{{ form.message }}</li>
+                            <br> 
+                            <label>Ratings</label>
+                            <li id="ratings" class="ratings">{{ form.ratings }}</li>
+                            <br> 
+                            <button type="submit" class="btn btn-primary">Submit</button>  
+                        </ul>
                 </div>
             </div>
         </div>
-  
+
         {% endblock content %}
     </body>
 </html>
