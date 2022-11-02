@@ -1,0 +1,8 @@
+div .helptext, div label {
+    color: red;
+    display: none;
+}
+
+form div br {
+    display: none;
+}
