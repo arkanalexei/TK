@@ -210,6 +210,11 @@
                     </span>
                     <form action="" form method ="post">
                         {% csrf_token %}
+                        {% if not user.is_authenticated %}
+                        <p style="color: rgb(235, 27, 27);" class="text-center mt-5">Please log in first to add yours!</p>
+                        <p class="mb-3"></p>
+                        <p class="mb-3"></p>
+                        {% else %}
                         <ul class="ratingscale" style="list-style-type:none;">
                             <br> 
                             <label>Your Name</label>
@@ -223,6 +228,7 @@
                             <br> 
                             <button type="submit" class="btn btn-primary">Submit</button>  
                         </ul>
+                        {% endif %}
                 </div>
             </div>
         </div>
