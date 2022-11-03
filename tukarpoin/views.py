@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-#from leaderboard.views import get_user_deposits
+from deposit.views import get_user_deposits
 from tukarpoin.models import Tukarpoin
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
