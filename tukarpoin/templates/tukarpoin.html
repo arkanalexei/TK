@@ -1,0 +1,152 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+<!DOCTYPE html>
+
+  {% block content %}
+    
+    <style>
+      body{
+        background: rgb(191,244,208);
+        background: radial-gradient(circle, rgba(191,244,208,1) 0%, rgba(173,233,148,1) 100%);
+      }
+    </style>
+  
+    <h1 style="text-align: center;"><span style='font-size:40px;'></span>{{user.username}}'s Redeem Point<span style='font-size:40px;'></span></h1>
+    
+    <style>
+      table, th{
+        text-align: center;
+        border: 1px solid #C9E4C5;
+        border-collapse: collapse;
+      }
+      td{
+        text-align: center;
+        border: 1px solid #C9E4C5;
+        border-collapse: collapse;
+      }
+      .button{
+        text-align: center;
+        margin-top: 10px;
+      }
+    </style>
+  
+  <table style=" margin-top: 20px;">
+
+  </table>
+  
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+  
+  <div class="container">
+    <div class="row g-3">
+        <div class="card"col-12 col-md-6 col-lg-4>
+           <img src="https://marketplace.canva.com/EAEi0sZZEnw/1/0/1600w/canva-elegant-beige-and-black-hotel-gift-certificate-XXfFJ2NtB1A.jpg" alt="Voucher Hotel" class="card-img-top" >
+           <div class="card-body">
+            <h5 class="card-title">Voucher Hotel</h5>
+            <p class="card-text">400 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+        </div>
+        <div class="card"col-12 col-md-6 col-lg-4>
+            <img src="https://img.freepik.com/free-vector/coffee-discount-coupon-gift-voucher-label-coffee-discount-banner-coupon-voucher-coffee-espresso-free-gift-illustration-vector-template_1284-46249.jpg?w=2000" alt="Voucher Kopi" class="card-img-top" >
+            <div class="card-body">
+             <h5 class="card-title">Voucher Kopi</h5>
+             <p class="card-text">100 poin</p>
+             <a href="#" class="btn btn-primary">Delete</a>
+             <a href="#" class="btn btn-primary">Redeem</a>
+         </div>
+         <div class="card"col-12 col-md-6 col-lg-4>
+            <img src="https://img.freepik.com/free-psd/voucher-template-pizza-restaurant_23-2148316818.jpg?w=2000" alt="Voucher Pizza" class="card-img-top" >
+            <div class="card-body">
+             <h5 class="card-title">Voucher Pizza</h5>
+             <p class="card-text">200 poin</p>
+             <a href="#" class="btn btn-primary">Delete</a>
+             <a href="#" class="btn btn-primary">Redeem</a>
+         </div>
+         <div class="card"col-12 col-md-6 col-lg-4>
+            <img src="https://cdn4.vectorstock.com/i/1000x1000/80/88/gift-voucher-for-spa-hotel-resort-flowers-vector-20158088.jpg" alt="Voucher Spa" class="card-img-top" >
+            <div class="card-body">
+             <h5 class="card-title">Voucher Spa</h5>
+             <p class="card-text">250 poin</p>
+             <a href="#" class="btn btn-primary">Delete</a>
+             <a href="#" class="btn btn-primary">Redeem</a>
+         </div>
+         <div class="card"col-12 col-md-6 col-lg-4>
+            <img src="https://img.freepik.com/free-psd/sushi-restaurant-gift-voucher-template_23-2148475062.jpg?w=2000" alt="Voucher Sushi" class="card-img-top" >
+            <div class="card-body">
+             <h5 class="card-title">Voucher Sushi</h5>
+             <p class="card-text">150 poin</p>
+             <a href="#" class="btn btn-primary">Delete</a>
+             <a href="#" class="btn btn-primary">Redeem</a>
+         </div>
+    </div>
+  </div>
+
+
+      <!-- <div style="padding-bottom: 20px">
+        <div class="card" style="width: 18rem;">
+            
+            <img src="https://marketplace.canva.com/EAEi0sZZEnw/1/0/1600w/canva-elegant-beige-and-black-hotel-gift-certificate-XXfFJ2NtB1A.jpg"class="card-img-top" alt="Voucher Hotel">
+            <div class="card-body">
+            <h5 class="card-title">Voucher Hotel</h5>
+            <p class="card-text">400 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+            </div>
+        </div>
+    </div>
+      <div style="padding-bottom: 20px">
+        <div class="card" style="width: 18rem;">
+            <img src="https://img.freepik.com/free-vector/coffee-discount-coupon-gift-voucher-label-coffee-discount-banner-coupon-voucher-coffee-espresso-free-gift-illustration-vector-template_1284-46249.jpg?w=2000" class="card-img-top" alt="Voucher Kopi">
+            <div class="card-body">
+            <h5 class="card-title">Voucher Kopi</h5>
+            <p class="card-text">100 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+            </div>
+        </div>
+    </div>
+      <div style="padding-bottom: 20px">
+        <div class="card" style="width: 18rem;">
+            <img src="images/voucher pizza.jpg" class="card-img-top" alt="Voucher Pizza">
+            <div class="card-body">
+            <h5 class="card-title">Voucher Pizza</h5>
+            <p class="card-text">150 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+            </div>
+        </div>
+    </div>
+      <div style="padding-bottom: 20px">
+        <div class="card" style="width: 18rem;">
+            <img src="images/vou" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Voucher</h5>
+            <p class="card-text">100 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+            </div>
+        </div>
+    </div>
+      <div style="padding-bottom: 20px">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Voucher</h5>
+            <p class="card-text">100 poin</p>
+            <a href="#" class="btn btn-primary">Delete</a>
+            <a href="#" class="btn btn-primary">Redeem</a>
+            </div>
+        </div>
+    </div> -->
+
+    
+    </div>
+    
+    <!-- <div class="button">
+      <button style="background-color: #cf9fca; padding: 14px 28px;"><a style=" text-decoration: none;" href="{% url 'tukarpoin:show_tukarpoin' %}">Add Todo</a></button>  
+    </div> -->
+    
+    </body>
+  
+  {% endblock content %}

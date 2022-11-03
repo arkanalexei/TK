@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "leaderboard",
     "deposit",
     "about",
+    "tukarpoin",
 ]
 
 MIDDLEWARE = [
