@@ -1,1 +1,1 @@
-web: gunicorn tk_pbp_d06.wsgi --log-file -
+web: python manage.py migrate && gunicorn tk_pbp_d06.wsgi
