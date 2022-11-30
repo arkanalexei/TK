@@ -19,8 +19,8 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from banksampah.forms import NewsForm
 import ast
-
 from leaderboard.models import Achiever
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -146,9 +146,17 @@ def login_user(request):
             response = HttpResponseRedirect(reverse("banksampah:home")) # membuat response
             response.set_cookie('username', username)
             response.set_cookie('last_login', timezone.now().strftime("%b. %d, %Y %H:%M:%S")) # membuat cookie last_login dan menambahkannya ke dalam response
-            return response
+            return JsonResponse({
+            "status": True,
+            "message": "Successfully Logged In!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
         else:
             messages.info(request, 'Username atau Password salah!')
+            return JsonResponse({
+            "status": False,
+            "message": "Failed to Login, check your email/password."
+            }, status=401)
     context = {}
     return render(request, 'login.html', context)
 

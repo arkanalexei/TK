@@ -21,6 +21,13 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 CSRF_TRUSTED_ORIGINS = ['https://scrappy.up.railway.app']
 
+CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_CREDENTIALS=True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -46,6 +53,9 @@ INSTALLED_APPS = [
     "leaderboard",
     "deposit",
     "about",
+    "authentication",
+    "corsheaders"
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "tk_pbp_d06.urls"
@@ -83,10 +94,21 @@ WSGI_APPLICATION = "tk_pbp_d06.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": "e3vSEtYDbsMUKIYzRIWC",
+        "HOST": "containers-us-west-49.railway.app",
+        "PORT": "7599",
     }
 }
 
