@@ -45,16 +45,29 @@ def news(request):
     return render(request, "news.html", context)
 
 
+@csrf_exempt
 def news_add(request):
     if request.method == "POST":
-        data = json.loads(request.POST['data'])
+        print(request.POST.dict())
+        data = request.POST.dict()
+        # print(json.loads(request.POST['data']))
+        # data = json.loads(request.POST['data'])
 
         new_news = News(title=data["title"], description=data["description"], user=request.user)
         new_news.save()
 
-        return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
-
-    return HttpResponse()
+        return JsonResponse({
+            "status": True,
+            "message": "Successfully Added News!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+        # return HttpResponse(serializers.serialize("json", [new_news]), content_type="application/json")
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Failed to add news, check your input."
+            }, status=401)
+    # return HttpResponse()
 
 @csrf_exempt
 def news_delete(request, news_id):
@@ -123,6 +136,7 @@ def get_mass(request):
     new_total.append(net_footprint)
     return new_total
 
+@csrf_exempt
 def register(request):
     form = UserCreationForm()
 
@@ -131,11 +145,22 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
-            return redirect('banksampah:login')
+            # return redirect('banksampah:login')
+            return JsonResponse({
+            "status": True,
+            "message": "Successfully Registered User!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+        else:
+            return JsonResponse({
+            "status": False,
+            "message": "Failed to register, check your input."
+            }, status=401)
     
     context = {'form':form, 'user':request.user}
     return render(request, 'register.html', context)
 
+@csrf_exempt
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
