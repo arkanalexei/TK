@@ -75,7 +75,19 @@ def news_delete(request, news_id):
         news = get_object_or_404(News, pk=news_id, user=request.user)
         news.delete()
 
-    return HttpResponse()
+        return JsonResponse({
+            "status": True,
+            "message": "Successfully Deleted News!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Failed to add news, check your input."
+            }, status=401)
+
+    # return HttpResponse()
 
 def news_json(request):
     news = News.objects.all()
