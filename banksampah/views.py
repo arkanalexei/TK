@@ -179,13 +179,20 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
+
+            admin = False
+            if user.is_superuser:
+                admin = True
+
             login(request, user) # melakukan login terlebih dahulu
             response = HttpResponseRedirect(reverse("banksampah:home")) # membuat response
             response.set_cookie('username', username)
             response.set_cookie('last_login', timezone.now().strftime("%b. %d, %Y %H:%M:%S")) # membuat cookie last_login dan menambahkannya ke dalam response
             return JsonResponse({
             "status": True,
-            "message": "Successfully Logged In!"
+            "message": "Successfully Logged In!",
+            "admin": admin,
+            "username": username
             # Insert any extra data if you want to pass data to Flutter
             }, status=200)
         else:
@@ -202,4 +209,10 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('banksampah:login'))
     response.delete_cookie('last_login')
     response.delete_cookie('username')
-    return redirect('banksampah:login')
+
+    return JsonResponse({
+            "status": True,
+            "message": "Successfully Logged Out!",
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+    # return redirect('banksampah:login')
