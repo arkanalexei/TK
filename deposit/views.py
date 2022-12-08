@@ -12,6 +12,9 @@ from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from datetime import datetime as dt
+from django.http import JsonResponse
+from django.views.decorators import csrf
+import json
 
 @login_required(login_url='banksampah:login')
 def get_user_deposits(request):    
@@ -31,6 +34,12 @@ def deposit_sampah(request):
     ''' Show the main /deposit/ page. '''
     # ------- See deposit history if logged in -------
     if request.user.is_authenticated:
+        try:
+            username = request.COOKIES['username']
+        except:
+            print("A logged-in user tried to access /deposit/ without valid cookies. Setting cookie manually.")
+            request.COOKIES['username'] = request.user.username
+        
         if Achiever.objects.filter(user=request.user): # if user already has points, proceed
             achiever = Achiever.objects.filter(user=request.user).get()
         else: # if user has no points, create new Achiever object to store user's points
@@ -40,6 +49,7 @@ def deposit_sampah(request):
             achiever.points = 0
             achiever.save()
             
+        # new cookie request for flutter support
         username = request.COOKIES['username']
         request.session['is_logged_in'] = True
     
@@ -55,20 +65,23 @@ def deposit_sampah(request):
                 }
     return render(request, "deposit.html", context=context)
 
-    
+
 @require_http_methods(["POST"])
+@csrf.csrf_exempt    
 def submit_form(request):
     ''' Submit a new deposit. '''
     
     # --- if user is logged in, allow them to submit new deposit ---
     if request.method == "POST":
-        form = Form(request.POST)
         print("Form submitted!\n")
+        print("Cookies sent: ", request.COOKIES)
         
         # --- session & form validation ---
-        if request.session['is_logged_in'] and form.is_valid(): # validation
+        if request.COOKIES['sessionid'] != None: # validation
             # Save form data as new WasteDeposit object
-            desc, type, mass = form.data['description'], form.data['type'], form.data['mass']
+            data = json.loads(request.body)
+            print(json.loads(request.body))
+            desc, type, mass = data['description'], data['type'], data['mass']
             if (float(mass) > 0 and type != ""):
                 new_deposit = WasteDeposit()
                 new_deposit.user = request.user
@@ -83,12 +96,22 @@ def submit_form(request):
                 achiever.points += int(float(mass) * get_waste_points(type))
                 achiever.save()
             
-            messages.add_message(request, messages.SUCCESS, "Deposit submitted successfully") # todo
-            response = HttpResponseRedirect(reverse("deposit:deposit_sampah"))
+            # new JSON response (for flutter support)
+            response = JsonResponse({
+                'status': 'success',
+                'message': 'Deposit successfully saved!'
+            })
+            response.status_code = 201
             return response
             
         else: # if user is not logged in
-            return redirect('banksampah:login')
+            # new JSON response (for flutter support)
+            response = JsonResponse({
+                'status': 'error',
+                'message': 'User not logged in or form invalid. Deposit not saved.'
+            })
+            response.status_code = 400
+            return response
         
 def show_deposit_by_id(request, id):
     ''' Show complete information of a single deposit'''
