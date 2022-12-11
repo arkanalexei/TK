@@ -1,3 +1,4 @@
+import json
 from django.forms import Form
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
@@ -9,6 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from datetime import datetime as dt
+from django.views.decorators import csrf
 
 # Create your views here.
 
@@ -56,6 +58,7 @@ def submit_form(request):
             return redirect('banksampah:login')
 
 @require_http_methods(["POST"])
+@csrf.csrf_exempt 
 def submit_flutter(request):
     # if user is logged in, allow them to submit new deposit
     if request.method == "POST":
