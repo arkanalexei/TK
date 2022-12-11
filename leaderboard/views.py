@@ -61,6 +61,10 @@ def submit_flutter(request):
     if request.method == "POST":
         form = Form(request.POST)
         if request.user.is_authenticated and form.is_valid(): # validation
+            try :
+                data = json.loads(request.body)
+            except:
+                data = Form(request.POST).data
             # Save form data as new WasteDeposit object
             comment = form.data['comment']
             if comment != "":
@@ -71,13 +75,13 @@ def submit_flutter(request):
                 new_comment.date_added = dt.now()
                 new_comment.save()
 
-               # new JSON response (for flutter support)
-                response = JsonResponse({
-                'status': 'success',
-                'message': 'Deposit successfully saved!'
-                })
-                response.status_code = 201
-                return response
+            # new JSON response (for flutter support)
+            response = JsonResponse({
+            'status': 'success',
+            'message': 'Deposit successfully saved!'
+            })
+            response.status_code = 201
+            return response
             
         else: # if user is not logged in
             # new JSON response (for flutter support)
