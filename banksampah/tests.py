@@ -9,13 +9,15 @@ from banksampah.models import News
 class HomeTest(TestCase): 
     def setUp(self):
         # runs before every test function
+        self.dummy_deposit = {
+            'data': '{"description": "test", "mass": 5.5, "type": "PLASTIK"}'
+        }
         self.dummy_news = {
-            'title': "this is a news article",
-            'description': "lorem ipsum",
+             'data': '{"title": "test", "description": "test"}'
         }
         self.credentials = {
-            'username': 'testimoney',
-            'password': 'investasibodong'
+            'username': 'testimoney11',
+            'password': 'investasibodong1'
         }
         self.user = User.objects.create_superuser(
             username= self.credentials['username'],
@@ -95,3 +97,42 @@ class HomeTest(TestCase):
         c= Client()
         response = c.post('/logout/', username='dog', password='123')
         self.assertEqual(response.status_code, 302)
+
+    def test_add_news(self):
+        c = Client()
+        c.login(**self.credentials)
+        c.get('/news/')
+
+        response = c.post('/news/add/', self.dummy_news)
+        
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_add_news(self):
+        c = Client()
+        c.login(**self.credentials)
+        response = c.get('/news/add/')
+        
+        self.assertEqual(response.status_code, 200)
+        
+
+    def test_delete_news(self):
+        c = Client()
+        c.login(**self.credentials)
+        c.get('/news/')
+        c.post('/news/add/', self.dummy_news)
+
+        response = c.post('/news/delete/1/')
+        
+        self.assertEqual(response.status_code, 200)
+
+    def test_wrong_login(self):
+        c = Client()
+        response = c.login(username='a', password='bbawdaw')
+        self.assertEqual(response, False)
+    
+    
+    def test_login2(self):
+        ''' test login process (before utilizing logged-in features)'''
+        c = Client()
+        is_logged_in = c.login(**self.credentials)
+        self.assertTrue(is_logged_in)

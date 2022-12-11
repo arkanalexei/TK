@@ -10,11 +10,13 @@
         {% endblock meta %}
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <body>
         {% block content %}
         <style type="text/css">
             body {
-                background-image: url('{%static 'images/bg.jpg'%}');
+                background-image: url({%static 'images/bg.jpg'%});
+                background-repeat: repeat-x;
                 background-size: 1500px 1000px;
                 opacity: 1;
             }
@@ -32,7 +34,7 @@
             }
         </style>
         
-
+    <main>
         <div class="hero min-h-fit"
             style="background-image: url();">
             <div class="hero-overlay bg-opacity-60"></div>
@@ -65,11 +67,14 @@
                         <a>What is Scrap.py?</a>
                     </span>
                     <p class="mb-3"></p>
-                    <p class="mb-3 text-lg text-justify">
-                        Scrap.py is a waste-bank that was created to facilitate the community 
-                        in managing waste in a sustainable manner. 
-                        Scrap.py exists as our responsibility to the environment through 3R (reduce, reuse, recycle) activities.
+                    <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                        <h2 class="text-white font-bold text-2xl tracking-wide">Cleaning the environment,<br>one scrap at a time</h2>
+                        <p class="text-emerald-400 font-semibold mt-2.5" >
+                            Scrap.py is a waste-bank that was created to facilitate the community 
+                            in managing waste in a sustainable manner. 
+                            Scrap.py exists as our responsibility to the environment through 3R (reduce, reuse, recycle) activities.
                         </p>
+                    </section>
                 </div>
 
                 <div class="box two">
@@ -78,13 +83,31 @@
                         <a>Vision and Mission</a>
                     </span>
                     <p class="mb-3"></p>
-                    <h2 class="text-lg text-center"><b>Our Vision</b></h2>
-                    <h1 class="text-lg text-justify">Providing ethical, independent, and responsible Waste Management Solutions to our community</h1>
+                    <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                        <h2 class="text-white font-bold text-2xl tracking-wide">Our Vision</h2>
+                        <p class="text-emerald-400 font-semibold mt-2.5" >
+                            Providing ethical, independent, and responsible Waste Management Solutions to our community
+                        </p>
+                    </section>
                     <p class="mb-3"></p>
-                    <h2 class="text-lg text-center"><b>Our Mission</b></h2>
-                    <h1 class="text-lg text-left"> 1) Empowering Waste Segregation</h1>
-                    <h1 class="text-lg text-left"> 2) Increasing Community Participation in Environmental Management</h1>
-                    <h1 class="text-lg text-left"> 3) Creating a More Creative, Innovative, Inspirational and Independent Society in the Field of Environmental Management</h1>
+                    <p class="mb-3"></p>
+                    <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                        <h2 class="text-white font-bold text-2xl tracking-wide">Our Mission</h2>
+                        <p class="text-emerald-400 font-semibold mt-2.5" >
+                            Empowering Waste Segregation
+                        </p>
+                        <p class="mb-3"></p>
+                        <p class="mb-3"></p>
+                        <p class="text-emerald-400 font-semibold mt-2.5" >
+                            Increasing Community Participation in Environmental Management
+                        </p>
+                        <p class="mb-3"></p>
+                        <p class="mb-3"></p>
+                        <p class="text-emerald-400 font-semibold mt-2.5" >
+                            Creating a More Creative, Innovative, Inspirational and Independent Society in the Field of Environmental Management
+                        </p>
+                    </section>
+
                 </div>
 
                 <div class="box three">
@@ -93,11 +116,45 @@
                         <a>Our Team</a>
                     </span>
                     <p class="mb-3"></p>
-                    <h1 class="text-lg text-left"> 1. Laela Putri Salsa Biella - 2106751562</h1>
-                    <h1 class="text-lg text-left"> 2. Inez Bungaria Octaviana Pardede - 2106751833</h1>
-                    <h1 class="text-lg text-left"> 3. Givarrel Veivel Pattiwael - 2106640341</h1>
-                    <h1 class="text-lg text-left"> 4. Abraham Javier Sebastian Situmorang - 2106704364</h1>
-                    <h1 class="text-lg text-left"> 5. Arkan Alexei Andrei - 2106631463</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-2 lg:gap-2">
+                        
+                        <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                            <h2 class="text-white font-bold text-2xl tracking-wide">Arkan Alexei Andrei</h2>
+                            <p class="text-emerald-400 font-semibold mt-2.5" >
+                                2106631463
+                            </p>
+                        </section>
+
+                        <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                            <h2 class="text-white font-bold text-2xl tracking-wide">Givarrel Veivel Pattiwael</h2>
+                            <p class="text-emerald-400 font-semibold mt-2.5" >
+                                2106640341
+                            </p>
+                        </section>
+
+                        <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                            <h2 class="text-white font-bold text-2xl tracking-wide">Laela Putri Salsa Biella</h2>
+                            <p class="text-emerald-400 font-semibold mt-2.5" >
+                                2106751562
+                            </p>
+                        </section>
+
+                        <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                            <h2 class="text-white font-bold text-2xl tracking-wide">Abraham Javier Sebastian</h2>
+                            <p class="text-emerald-400 font-semibold mt-2.5" >
+                                2106704364
+                            </p>
+                        </section>
+
+                        <section class="w-65 mx-50 bg-[#013320] rounded-2xl px-8 py-6 shadow-lg transform transition duration-500 hover:scale-110">
+                            <h2 class="text-white font-bold text-2xl tracking-wide">Inez Bungaria Octaviana</h2>
+                            <p class="text-emerald-400 font-semibold mt-2.5" >
+                                2106751833
+                            </p>
+                        </section>
+                        
+                      </div>
+
                 </div>
 
                 <div class="box four">
@@ -199,14 +256,13 @@
             </div>
         </div>
 
-        
         <div class="hero min-h-max"
         style="background-image: url();">
             <div class="hero-overlay bg-opacity-100"></div>
             <div class="hero-content text-center text-primary-content">
                 <div class="max-w-md">
                     <span class="text-4xl font-bold">
-                        <a>Send Your Feedbacks!</a>
+                        <a>Send Your Feedbacks Here</a>
                     </span>
                     <form action="" form method ="post">
                         {% csrf_token %}
@@ -223,15 +279,181 @@
                             <label>Feedback Message</label>
                             <li input type="text" id="message" class="message">{{ form.message }}</li>
                             <br> 
+
                             <label>Ratings</label>
                             <li id="ratings" class="ratings">{{ form.ratings }}</li>
                             <br> 
+                            
                             <button type="submit" class="btn btn-primary">Submit</button>  
                         </ul>
                         {% endif %}
                 </div>
             </div>
         </div>
+
+        {% if user.is_authenticated %}
+        <div>
+        <div class="hero min-h-fit" style="background-image: url();">
+            <div class="hero-overlay bg-opacity-160"></div>
+            <div class="hero-content text-center text-primary-content">
+                <div class="container px-5">
+                    <div class="row gx-3">
+                        <span class="text-3xl font-bold">
+                            <a>Your Feedback History</a>
+                        </span>
+                        <p>Organize your feedback history</p>
+                        <p class="mb-3"></p>
+   
+                    <div class="w-100 d-flex justify-content-center">
+                    
+                    <table class="table w-75">
+                        <thead>
+                        <tr>
+                            <th scope="col"><font color="#FFFF00">Timefield</font></th>
+                            <th scope="col"><font color="#FFFF00">Message</font></th>
+                            <th scope="col"><font color="#FFFF00">Ratings</font></th>
+                            <th scope="col"><font color="#FFFF00">Actions</font></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% if feedbacksAll %}
+                                {% for history in feedbacksAll %}
+                                    <tr>
+                                        <td><font color="#FFF">{{ history.created_at }}</font></td>
+                                        <td><font color="#FFF">{{ history.message}}</font></td>
+                                        <td><font color="#FFF">{{ history.ratings }}</font></td>
+                                        <td>
+                                            <!--
+                                                <button type="button" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-message={{ history.message }} data-ratings={{ history.ratings }} data-pk={{ history.pk }}>Edit</button>
+                                            -->
+                                            <button type="button" pk={{ history.pk }} class="delete-feedback btn btn-outline-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Message</label>
+                        <input type="textarea" class="form-control message" id="modal_message" value="" placeholder="Type message">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Ratings</label>
+                        <select name="ratings" class="form-control ratings" id="modal_ratings" value ="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" pk="" class="edit-feedback btn btn-primary">Save</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var exampleModal = document.getElementById('exampleModal')
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-* attributes
+                var message = button.getAttribute('data-message')
+                var ratings = button.getAttribute('data-ratings')
+                var pk = button.getAttribute('data-pk')
+
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                
+                // Get the modal's content.
+                var modalBodyMessage = exampleModal.querySelector('.modal-body .message')
+                var modalBodyRatings = exampleModal.querySelector('.modal-body .ratings')
+                var modalSaveButton = exampleModal.getElementsByClassName("edit-feedback")
+
+                modalBodyMessage.value = message
+                modalBodyRatings.value = ratings
+                modalSaveButton.pk = pk
+            })
+
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            $(document).ready(function(){
+                $(".edit-feedback").click(function() {
+                    $.ajax({
+                        url: '{% url "about:edit_feedback" %}',
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken")
+                        },
+                        data: {
+                            "id": exampleModal.getElementsByClassName("edit-feedback").pk,
+                            "message": document.getElementById('modal_message').value,
+                            "ratings": document.getElementById('modal_ratings').value,
+                        },
+                        success: function(result){
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.error(err)
+                        }
+                    })
+                })
+
+                $(".delete-feedback").click(function(){
+                    $.ajax({
+    
+                        url: '{% url "about:delete_feedback" %}',
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": getCookie("csrftoken")
+                        },
+                        data: {
+                            "id": $(this).attr('pk')
+                        },
+                        success: function(result){
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.error(err)
+                        }
+                    });
+                });
+            });
+        </script>
+        </div>
+    </main>
+        {% endif %}
 
         {% endblock content %}
     </body>
