@@ -3,9 +3,9 @@ from django.core.validators import MaxValueValidator,MinValueValidator
 from django.conf import settings
 
 class Feedback(models.Model):
-    pengirim = models.CharField(max_length=1000, default="")
+    name = models.CharField(max_length=1000, default="")
     message = models.CharField(max_length=2000, default ="")
-    ratings = models.CharField(max_length=1000, choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')])
+    star = models.CharField(max_length=1000, choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5')], default='5')
     created_at = models.DateTimeField(auto_now_add=True,null=True) 
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, null=True)
 
