@@ -84,7 +84,7 @@ def news_delete(request, news_id):
     else:
         return JsonResponse({
             "status": False,
-            "message": "Failed to add news, check your input."
+            "message": "Failed to delete news, check your permission."
             }, status=401)
 
     # return HttpResponse()
@@ -142,10 +142,14 @@ def get_mass(request):
     for num in total:
         if str(num).endswith('.0'):
             num = int(num)
+        else:
+            num = round(num, 2)
         new_total.append(num)
 
     net_footprint = (new_total[0] * 249 + new_total[1] * -454 + new_total[2] * -2088 + new_total[3] * -3247) / 1000
     new_total.append(net_footprint)
+    total_mass = new_total[0] + new_total[1] + new_total[2] + new_total[3]
+    new_total.append(total_mass)
     return new_total
 
 @csrf_exempt
@@ -160,13 +164,14 @@ def register(request):
             # return redirect('banksampah:login')
             return JsonResponse({
             "status": True,
-            "message": "Successfully Registered User!"
+            "message": "Successfully Registered User!",
+            "success": True,
             # Insert any extra data if you want to pass data to Flutter
             }, status=200)
         else:
             return JsonResponse({
             "status": False,
-            "message": "Failed to register, check your input."
+            "message": "Failed to register, check your input.",
             }, status=401)
     
     context = {'form':form, 'user':request.user}
@@ -188,11 +193,15 @@ def login_user(request):
             response = HttpResponseRedirect(reverse("banksampah:home")) # membuat response
             response.set_cookie('username', username)
             response.set_cookie('last_login', timezone.now().strftime("%b. %d, %Y %H:%M:%S")) # membuat cookie last_login dan menambahkannya ke dalam response
+            
+            mass = get_mass(request)
+            
             return JsonResponse({
             "status": True,
             "message": "Successfully Logged In!",
             "admin": admin,
-            "username": username
+            "username": username,
+            'mass': mass
             # Insert any extra data if you want to pass data to Flutter
             }, status=200)
         else:
