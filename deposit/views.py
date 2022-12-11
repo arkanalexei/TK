@@ -73,14 +73,17 @@ def submit_form(request):
     
     # --- if user is logged in, allow them to submit new deposit ---
     if request.method == "POST":
-        print("Form submitted!\n")
-        print("Cookies sent: ", request.COOKIES)
+        print("Form submitted! With cookies: ", request.COOKIES)
         
         # --- session & form validation ---
         if request.COOKIES['sessionid'] != None: # validation
             # Save form data as new WasteDeposit object
-            data = json.loads(request.body)
-            print(json.loads(request.body))
+            try:
+                # flutter request sends data in body
+                data = json.loads(request.body)
+            except:
+                # django sends html form (old fashioned way)
+                data = Form(request.POST).data
             desc, type, mass = data['description'], data['type'], data['mass']
             if (float(mass) > 0 and type != ""):
                 new_deposit = WasteDeposit()
