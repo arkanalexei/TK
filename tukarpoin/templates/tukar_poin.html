@@ -27,13 +27,10 @@
     {% endfor %}
 </div>
 
-<p>{{ poinz }}</p>
-
 {% if user.is_superuser %}
 <form id="tukarpoinForm" method="POST" action="{% url 'tukarpoin:tambah_perk' %}">
-    {% csrf_token %}
     {{ form_poin.as_table }}
-    <input name="submit" type="submit" value="Submit" class="btn" onclick="">
+    <input type="submit" value="Submit" class="btn" onclick="">
 </form>
 
 {% else %}

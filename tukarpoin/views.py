@@ -40,7 +40,8 @@ def redeem(request, perk_id):
 
             return JsonResponse({
             "status": True,
-            "message": "Berhasil ditukar"
+            "message": "Berhasil ditukar",
+            "points": achiever.points,
             # Insert any extra data if you want to pass data to Flutter
             }, status=200)
     else:
@@ -55,17 +56,21 @@ def tukar_poin_json(request):
 
 @csrf_exempt
 def tambah_perk(request):
-    form = TukarPoinForm()
+    form2 = TukarPoinForm()
     if request.method == "POST":
-        form = TukarPoinForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Perk berhasil dibuat')
-            return JsonResponse({
-                "status": True,
-                "message": "Berhasil",
-            }, status=200)
-        
+        print("a")
+        print(request.POST)
+        form2 = TukarPoinForm(request.POST)
+        if form2.is_valid():
+            form2.save()
+
+        form = request.POST.dict()
+        messages.success(request, 'Perk berhasil dibuat')
+        return JsonResponse({
+            "status": True,
+            "message": "Berhasil",
+        }, status=200)
+
     else:
         return JsonResponse({
             "status": False,

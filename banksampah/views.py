@@ -195,13 +195,25 @@ def login_user(request):
             response.set_cookie('last_login', timezone.now().strftime("%b. %d, %Y %H:%M:%S")) # membuat cookie last_login dan menambahkannya ke dalam response
             
             mass = get_mass(request)
+
+
+            if Achiever.objects.filter(user=request.user): # if user already has points, proceed
+                achiever = Achiever.objects.filter(user=request.user).get()
+            else: # if user has no points, create new Achiever object to store user's points
+                achiever = Achiever()
+                achiever.user = request.user
+                achiever.name = request.user.username
+                achiever.points = 0
+                achiever.save()
+
             
             return JsonResponse({
             "status": True,
             "message": "Successfully Logged In!",
             "admin": admin,
             "username": username,
-            'mass': mass
+            'mass': mass,
+            'points': achiever.points
             # Insert any extra data if you want to pass data to Flutter
             }, status=200)
         else:
