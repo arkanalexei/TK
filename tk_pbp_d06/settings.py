@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "leaderboard",
     "deposit",
     "about",
+    "tukarpoin",
     "authentication",
     "corsheaders"
 

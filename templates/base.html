@@ -53,6 +53,7 @@
             <li><a href="{% url 'deposit:deposit_sampah' %}">Deposit</a></li>
             <li><a href="{% url 'banksampah:news' %}">News</a></li>
             <li><a href="{% url 'leaderboard:leaderboard' %}">Leaderboard</a></li>
+            <li><a href="{% url 'tukarpoin:tukar_poin' %}">Tukar Poin</a></li>
             
             {% if user.is_authenticated %}
             <li><a href="{% url 'banksampah:logout' %}">Logout</a></li>
