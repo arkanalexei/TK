@@ -7,5 +7,6 @@ urlpatterns = [
     path('', show_leaderboard, name='leaderboard'),
     path('json/', json_leaderboard, name='json_leaderboard'),
     path('json/comments/', json_feedback, name='json_feedback'),
-    path('submit/', submit_form, name='submit_form')
+    path('submit/', submit_form, name='submit_form'),
+    path('submit/flutter/', submit_flutter, name='submit_flutter'),
 ]
