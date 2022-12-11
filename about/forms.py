@@ -9,10 +9,10 @@ class FeedbackForm(forms.ModelForm):
          ('3','3'),
          ('4','4'),
          ('5','5')]
-    ratings = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}))
+    star = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'class': 'form-check-inline'}))
     class Meta:
         model = Feedback
-        fields =['pengirim','message','ratings']
-        widgets = {'ratings':forms.RadioSelect}
+        fields =['name','message','star']
+        widgets = {'star':forms.RadioSelect}
         
 form = FeedbackForm()

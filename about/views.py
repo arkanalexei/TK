@@ -18,9 +18,9 @@ def get_data(request):
     for group in all_feedback_groups:
         group_dict = {
                 "id" : int(group.pk),
-                "pengirim": group.pengirim,
+                "name": group.name,
                 "message":group.message,
-                "ratings":group.ratings,
+                "star":group.star,
         }
         all_feedback_list.append(group_dict)
     
@@ -58,11 +58,11 @@ def edit_feedback(request):
   if (request.method == "POST"):
     id = request.POST.get("id")
     message = request.POST.get("message")
-    ratings = request.POST.get("ratings")
+    star = request.POST.get("star")
       
     feedback = Feedback.objects.get(id=id)
     feedback.message = message
-    feedback.ratings = ratings
+    feedback.star = star
     feedback.save()
 
   return HttpResponseRedirect("/about/")
@@ -72,3 +72,19 @@ def delete_feedback(request):
         id = request.POST.get("id")
         Feedback.objects.filter(id=id).delete()
     return HttpResponseRedirect("/about/")
+
+def show_xml(request):
+    data = Feedback.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = Feedback.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = Feedback.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = Feedback.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
