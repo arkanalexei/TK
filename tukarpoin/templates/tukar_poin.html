@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Tukar Poin</title>
+{% endblock meta %}
+
+{% block content %}
+
+
+
+<div class="grid grid-cols-4 gap-4">
+    {% for perk in perks %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ perk.nama }}</h5>
+            <p class="card-text">{{ perk.deskripsi }}</p>
+            <p class="card-text">Poin: {{ perk.harga }}</p>
+        </div>
+        <div class="card-actions">
+            <form method="POST" action="{% url 'tukarpoin:redeem' perk.id %}">
+                {% csrf_token %}
+                <input name="submit" type="submit" value="Tukar" class="btn btn-accent bg-success">
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<p>{{ poinz }}</p>
+
+{% if user.is_superuser %}
+<form id="tukarpoinForm" method="POST" action="{% url 'tukarpoin:tambah_perk' %}">
+    {% csrf_token %}
+    {{ form_poin.as_table }}
+    <input name="submit" type="submit" value="Submit" class="btn" onclick="">
+</form>
+
+{% else %}
+{% endif %}
+
+{% endblock content %}
