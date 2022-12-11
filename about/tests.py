@@ -11,4 +11,4 @@ class AboutTest(TestCase):
     def test_add_feedback(self):
         c = Client()
         c.login(username="test", password="investasibodong")
-        Feedback.objects.create(pengirim="a", message="y", ratings=('5','5'))
+        Feedback.objects.create(name="a", message="y", star=('5','5'))

@@ -240,13 +240,13 @@
                                 <div class="col mb-5 h-100">
                                     <p class="mb-0">{{feedback.message}}</p>
                                     <h1 class="h3 fw-bolder mb-1" style="color: rgb(207, 178, 14);">
-                                        {% if feedback.ratings == "1" %} &#9733 &#9734 &#9734 &#9734 &#9734 {% endif %}
-                                        {% if feedback.ratings == "2" %} &#9733 &#9733 &#9734 &#9734 &#9734 {% endif %}
-                                        {% if feedback.ratings == "3" %} &#9733 &#9733 &#9733 &#9734 &#9734 {% endif %}
-                                        {% if feedback.ratings == "4" %} &#9733 &#9733 &#9733 &#9733 &#9734 {% endif %}
-                                        {% if feedback.ratings == "5" %} &#9733 &#9733 &#9733 &#9733 &#9733 {% endif %}
+                                        {% if feedback.star == "1" %} &#9733 &#9734 &#9734 &#9734 &#9734 {% endif %}
+                                        {% if feedback.star == "2" %} &#9733 &#9733 &#9734 &#9734 &#9734 {% endif %}
+                                        {% if feedback.star == "3" %} &#9733 &#9733 &#9733 &#9734 &#9734 {% endif %}
+                                        {% if feedback.star == "4" %} &#9733 &#9733 &#9733 &#9733 &#9734 {% endif %}
+                                        {% if feedback.star == "5" %} &#9733 &#9733 &#9733 &#9733 &#9733 {% endif %}
                                     </h1>
-                                    <h2 class="h6">from {{feedback.pengirim}} </h2>
+                                    <h2 class="h6">from {{feedback.name}} </h2>
                                 </div>
                                 {% endfor %}
                             </div>  
@@ -274,14 +274,14 @@
                         <ul class="ratingscale" style="list-style-type:none;">
                             <br> 
                             <label>Your Name</label>
-                            <li input type="text" id="pengirim" class="pengirim">{{ form.pengirim }}</li>
+                            <li input type="text" id="name" class="name">{{ form.name }}</li>
                             <br> 
                             <label>Feedback Message</label>
                             <li input type="text" id="message" class="message">{{ form.message }}</li>
                             <br> 
 
                             <label>Ratings</label>
-                            <li id="ratings" class="ratings">{{ form.ratings }}</li>
+                            <li id="star" class="star">{{ form.star }}</li>
                             <br> 
                             
                             <button type="submit" class="btn btn-primary">Submit</button>  
@@ -321,10 +321,10 @@
                                     <tr>
                                         <td><font color="#FFF">{{ history.created_at }}</font></td>
                                         <td><font color="#FFF">{{ history.message}}</font></td>
-                                        <td><font color="#FFF">{{ history.ratings }}</font></td>
+                                        <td><font color="#FFF">{{ history.star }}</font></td>
                                         <td>
                                             <!--
-                                                <button type="button" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-message={{ history.message }} data-ratings={{ history.ratings }} data-pk={{ history.pk }}>Edit</button>
+                                                <button type="button" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-message={{ history.message }} data-star={{ history.star }} data-pk={{ history.pk }}>Edit</button>
                                             -->
                                             <button type="button" pk={{ history.pk }} class="delete-feedback btn btn-outline-danger">Delete</button>
                                         </td>
@@ -353,7 +353,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Ratings</label>
-                        <select name="ratings" class="form-control ratings" id="modal_ratings" value ="">
+                        <select name="star" class="form-control star" id="modal_star" value ="">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -376,7 +376,7 @@
                 var button = event.relatedTarget
                 // Extract info from data-* attributes
                 var message = button.getAttribute('data-message')
-                var ratings = button.getAttribute('data-ratings')
+                var star = button.getAttribute('data-star')
                 var pk = button.getAttribute('data-pk')
 
                 // If necessary, you could initiate an AJAX request here
@@ -384,11 +384,11 @@
                 
                 // Get the modal's content.
                 var modalBodyMessage = exampleModal.querySelector('.modal-body .message')
-                var modalBodyRatings = exampleModal.querySelector('.modal-body .ratings')
+                var modalBodyStar = exampleModal.querySelector('.modal-body .star')
                 var modalSaveButton = exampleModal.getElementsByClassName("edit-feedback")
 
                 modalBodyMessage.value = message
-                modalBodyRatings.value = ratings
+                modalBodyStar.value = star
                 modalSaveButton.pk = pk
             })
 
@@ -419,7 +419,7 @@
                         data: {
                             "id": exampleModal.getElementsByClassName("edit-feedback").pk,
                             "message": document.getElementById('modal_message').value,
-                            "ratings": document.getElementById('modal_ratings').value,
+                            "star": document.getElementById('modal_star'').value,
                         },
                         success: function(result){
                             location.reload();
