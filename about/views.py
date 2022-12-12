@@ -78,6 +78,7 @@ def show_xml(request):
     data = Feedback.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
+@csrf_exempt
 def show_json(request):
     data = Feedback.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
@@ -86,6 +87,7 @@ def show_xml_by_id(request, id):
     data = Feedback.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
+@csrf_exempt
 def show_json_by_id(request, id):
     data = Feedback.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
