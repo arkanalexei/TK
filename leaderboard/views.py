@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from datetime import datetime as dt
 from django.views.decorators import csrf
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -57,42 +58,64 @@ def submit_form(request):
         else: # if user is not logged in
             return redirect('banksampah:login')
 
-@require_http_methods(["POST"])
-@csrf.csrf_exempt 
+# @require_http_methods(["POST"])
+@csrf_exempt
 def submit_flutter(request):
     # if user is logged in, allow them to submit new deposit
+    print(request.POST)
     if request.method == "POST":
-        form = Form(request.POST)
-        if request.user.is_authenticated and form.is_valid(): # validation
-            try :
-                data = json.loads(request.body)
-            except:
-                data = Form(request.POST).data
-            # Save form data as new WasteDeposit object
-            comment = form.data['comment']
-            if comment != "":
-                new_comment = Comment()
-                new_comment.comment = comment
-                new_comment.user = request.user
-                new_comment.nama = request.user.username
-                new_comment.date_added = dt.now()
-                new_comment.save()
+        data = request.POST.dict()
+        print(data)
 
-            # new JSON response (for flutter support)
-            response = JsonResponse({
-            'status': 'success',
-            'message': 'Deposit successfully saved!'
-            })
-            response.status_code = 201
-            return response
+        form = Form(request.POST)
+        print(form)
+
+        new_comment = Comment(comment=data['comment'], user=request.user, nama = request.user.username, date_added = dt.now())
+        # new_comment.user = request.user
+        # new_comment.nama = request.user.username
+        # new_comment.date_added = dt.now()
+        new_comment.save()
+        return JsonResponse({
+            "status": True,
+            "message": "Successfully Added Comment!"
+            # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+    else:
+        return JsonResponse({
+            "status": False,
+            "message": "Failed to add comment, check your input."
+            }, status=401)
+        
+        # if request.user.is_authenticated and form.is_valid(): # validation
+        #     try :
+        #         data = json.loads(request.body)
+        #     except:
+        #         data = Form(request.POST).data
+        #     # Save form data as new WasteDeposit object
+        #     comment = form.data['comment']
+        #     if comment != "":
+        #         new_comment = Comment()
+        #         new_comment.comment = comment
+        #         new_comment.user = request.user
+        #         new_comment.nama = request.user.username
+        #         new_comment.date_added = dt.now()
+        #         new_comment.save()
+
+        #     # new JSON response (for flutter support)
+        #     response = JsonResponse({
+        #     'status': 'success',
+        #     'message': 'Deposit successfully saved!'
+        #     })
+        #     response.status_code = 201
+        #     return response
             
-        else: # if user is not logged in
-            # new JSON response (for flutter support)
-            response = JsonResponse({
-                'status': 'error',
-                'message': 'User not logged in or form invalid. Deposit not saved.'
-            })
-            response.status_code = 400
-            return response
+        # else: # if user is not logged in
+        #     # new JSON response (for flutter support)
+        #     response = JsonResponse({
+        #         'status': 'error',
+        #         'message': 'User not logged in or form invalid. Deposit not saved.'
+        #     })
+        #     response.status_code = 400
+        #     return response
 
 
