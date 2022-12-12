@@ -29,7 +29,7 @@ def get_data(request):
 
     return HttpResponse(data, content_type='application/json')
 
-@csrf.csrf_exempt
+@csrf_exempt
 def about_us(request):
     feedbacks = Feedback.objects.all().order_by("-created_at")[:4]
     feedbacksAll = Feedback.objects.filter(user_id = request.user.id)
